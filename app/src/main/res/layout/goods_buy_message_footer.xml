@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff">
+
+    <TextView
+        android:id="@+id/add_goods_buy"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/color_f9f9f9"
+        android:gravity="center"
+        android:text="+添加物品申购明细"
+        android:textColor="@color/color_3dacfe"
+        android:textSize="12sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_goods_buy"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="13dp"
+        android:text="总价(元)"
+        android:textColor="@color/color_000000"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/goods_buy_all_price_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/add_goods_buy"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="13dp"
+        android:layout_toRightOf="@+id/a"
+        android:gravity="right"
+        android:text="0"
+        android:textColor="@color/color_000000"
+        android:textSize="12sp" />
+</RelativeLayout>

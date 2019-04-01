@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f9f9f9"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/color_f9f9f9"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:id="@+id/mingxi_num_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="物品申购明细(1)"
+            android:textColor="@color/color_b9b9b9"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/delete_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:text="删除"
+            android:textColor="@color/color_3dacfe"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@color/color_ffffff"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:id="@+id/didian_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="物品名称"
+            android:textColor="@color/color_000000"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/edit_goods_buy_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/didian_tv"
+            android:layout_marginLeft="5dp"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:gravity="end|center_vertical"
+            android:hint="请输入"
+            android:maxLength="50"
+            android:inputType="text"
+            android:textColor="@color/color_000000"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/color_ffffff"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:id="@+id/s_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="规格型号"
+            android:textColor="@color/color_000000"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/edit_goods_buy_model"
+            android:layout_width="match_parent"
+            android:layout_toRightOf="@+id/s_time"
+            android:layout_marginLeft="5dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:gravity="end|center_vertical"
+            android:hint="请输入"
+            android:maxLength="50"
+            android:inputType="text"
+            android:text=""
+            android:textColor="@color/color_000000"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/color_ffffff"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="单价(元)"
+            android:textColor="@color/color_000000"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/edit_goods_buy_price"
+            android:layout_width="match_parent"
+            android:layout_toRightOf="@+id/price"
+            android:layout_marginLeft="5dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:gravity="end|center_vertical"
+            android:hint="0"
+            android:inputType="numberDecimal"
+            android:text=""
+            android:maxLength="6"
+            android:textColor="@color/color_000000"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/color_ffffff"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:id="@+id/num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="物品数量"
+            android:textColor="@color/color_000000"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/edit_goods_buy_num"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/num"
+            android:layout_marginLeft="5dp"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:gravity="end|center_vertical"
+            android:hint="0"
+            android:inputType="number"
+            android:maxLength="5"
+            android:text=""
+            android:textColor="@color/color_000000"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/color_ffffff"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:id="@+id/all_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="物品总额"
+            android:textColor="@color/color_000000"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/goods_all_price"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="end|center_vertical"
+            android:text="0"
+            android:textColor="@color/color_000000"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/color_ffffff">
+
+        <TextView
+            android:id="@+id/goods_reason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="物品用途"
+            android:textColor="@color/color_000000"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/edit_goods_use_reason"
+            android:layout_width="250dp"
+            android:layout_height="130dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/goods_reason"
+            android:background="@drawable/reason_bg"
+            android:gravity="left"
+            android:hint="请输入"
+            android:maxLength="300"
+            android:padding="5dp"
+            android:textColor="@color/color_000000"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+
+</LinearLayout>

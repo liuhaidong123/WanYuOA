@@ -1,0 +1,96 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    tools:context="com.oa.wanyu.fragment.MyFragment">
+
+    <RelativeLayout
+        android:background="@drawable/my_bg"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="13dp"
+        android:layout_width="match_parent"
+        android:layout_height="173dp">
+
+        <TextView
+            android:id="@+id/my_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:ellipsize="end"
+            android:maxLength="12"
+            android:text="李宏宇"
+            android:textColor="@color/color_000000"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/my_company"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/my_name"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_toLeftOf="@+id/my_head_img"
+            android:ellipsize="end"
+            android:text="涿州市万宇利通创业管理服务有限公司"
+            android:textColor="@color/color_000000"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/my_bumen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/my_company"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:text="部门：销售部"
+            android:textColor="@color/color_000000"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/my_job"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/my_bumen"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:text="职位：销售总监"
+            android:textColor="@color/color_000000"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/my_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/my_job"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:text="电话：18335277251"
+            android:textColor="@color/color_000000"
+            android:textSize="10sp" />
+
+        <com.oa.wanyu.myutils.CircleImg
+            android:id="@+id/my_head_img"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:src="@mipmap/head_img_icon" />
+
+        <ImageView
+            android:id="@+id/my_edit"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/my_edit_icon"
+            />
+    </RelativeLayout>
+</RelativeLayout>

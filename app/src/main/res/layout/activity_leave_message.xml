@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_leave_message"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    tools:context="com.oa.wanyu.activity.leave.LeaveActivityMessageActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/leavell"
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
+
+            <ImageView
+                android:id="@+id/back_img"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:src="@mipmap/back_img" />
+
+            <TextView
+                android:id="@+id/sq_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="请假"
+                android:textColor="@color/color_232323"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="13dp"
+            android:background="@color/color_f9f9f9" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/color_ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <TextView
+                android:id="@+id/e_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="请假类型"
+                android:textColor="@color/color_000000"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/leave_type_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/select3_img"
+                android:layout_toRightOf="@+id/e_time"
+                android:gravity="end|center_vertical"
+                android:paddingLeft="10dp"
+                android:text="事假"
+                android:textColor="@color/color_000000"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/select3_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/sanjiao"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/color_ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <TextView
+                android:id="@+id/s_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="开始时间"
+                android:textColor="@color/color_000000"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/leave_start_time_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/select_img"
+                android:layout_toRightOf="@+id/s_time"
+                android:gravity="end|center_vertical"
+                android:paddingLeft="10dp"
+                android:text="2019年3月6日"
+                android:textColor="@color/color_000000"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/select_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/select_icon"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/color_ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <TextView
+                android:id="@+id/leave_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="结束时间"
+                android:textColor="@color/color_000000"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/leave_end_time_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/se_img"
+                android:layout_toRightOf="@+id/leave_end_time"
+                android:gravity="end|center_vertical"
+                android:paddingLeft="10dp"
+                android:text="2019年3月7日"
+                android:textColor="@color/color_000000"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/se_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/select_icon"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/color_ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="时长(天)"
+                android:textColor="@color/color_000000"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/day_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:text="2"
+                android:textColor="@color/color_000000"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/leave_reason"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/add_trip"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:text="请假理由"
+                android:textColor="@color/color_000000"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/edit_leave_reason"
+                android:layout_width="250dp"
+                android:layout_height="130dp"
+                android:layout_below="@+id/add_trip"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/leave_reason"
+                android:background="@null"
+                android:enabled="false"
+                android:text="生病"
+                android:gravity="left"
+                android:maxLength="300"
+                android:padding="5dp"
+                android:textColor="@color/color_000000"
+                android:textSize="12sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <!--同意驳回的按钮只有在待审批详情中才会显示-->
+    <LinearLayout
+        android:id="@+id/agree_disagree_ll"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="6dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+       >
+
+        <TextView
+            android:id="@+id/travel_agree_btn"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@drawable/agree_bg"
+            android:gravity="center"
+            android:text="同意"
+            android:textColor="@color/color_ffffff"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/travel_disagree_btn"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/disagree_bg"
+            android:gravity="center"
+            android:text="驳回"
+            android:textColor="@color/color_ffffff"
+            android:visibility="gone" />
+
+        <!--撤回的按钮只有在提交申请后的审批中才会显示,弹框提示-->
+        <TextView
+            android:id="@+id/withdraw_submit"
+            android:layout_width="330dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/disagree_bg"
+            android:gravity="center"
+            android:text="@string/withdraw"
+            android:textColor="@color/color_ffffff"
+            android:textSize="15sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</RelativeLayout>

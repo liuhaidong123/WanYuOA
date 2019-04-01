@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_reimbursement_message"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    tools:context="com.oa.wanyu.activity.reimbursementActivity.ReimbursementActivityMessageActivity">
+
+    <RelativeLayout
+        android:id="@+id/bx_rl"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <ImageView
+            android:id="@+id/back_img"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:src="@mipmap/back_img" />
+
+        <TextView
+            android:id="@+id/sq_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="报销"
+            android:textColor="@color/color_232323"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/bx_listview_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/agree_disagree_ll"
+        android:layout_below="@+id/bx_rl"
+        android:layout_marginBottom="10dp"
+        android:divider="@color/color_f9f9f9"
+        android:dividerHeight="0dp"
+        android:scrollbars="none">
+
+    </ListView>
+
+    <!--同意驳回的按钮只有在待审批详情中才会显示-->
+    <LinearLayout
+        android:id="@+id/agree_disagree_ll"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="6dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/travel_agree_btn"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@drawable/agree_bg"
+            android:gravity="center"
+            android:text="同意"
+            android:textColor="@color/color_ffffff"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/travel_disagree_btn"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/disagree_bg"
+            android:gravity="center"
+            android:text="驳回"
+            android:textColor="@color/color_ffffff"
+            android:visibility="gone" />
+
+        <!--撤回的按钮只有在提交申请后的审批中才会显示,弹框提示-->
+        <TextView
+            android:id="@+id/withdraw_submit"
+            android:layout_width="330dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/disagree_bg"
+            android:gravity="center"
+            android:text="@string/withdraw"
+            android:textColor="@color/color_ffffff"
+            android:textSize="15sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+
+</RelativeLayout>

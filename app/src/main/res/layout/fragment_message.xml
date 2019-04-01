@@ -1,0 +1,136 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.oa.wanyu.fragment.MessageFragment">
+
+    <RelativeLayout
+        android:id="@+id/title_rl"
+        android:layout_width="match_parent"
+        android:layout_height="238dp"
+        android:background="@color/color_b9b9b9">
+        <TextView
+            android:textSize="16sp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="18dp"
+            android:textColor="@color/color_232323"
+            android:text="消息"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="44dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/register_bg"
+            android:gravity="center"
+            android:text="@string/register_tv"
+            android:textColor="@color/color_fefefe"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:id="@+id/title_two_ll"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <TextView
+                        android:id="@+id/history_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/history_tv"
+                        android:textColor="@color/color_3dfefc"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/history_tv_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/history_tv"
+                        android:layout_centerHorizontal="true"
+                        android:text="200"
+                        android:textColor="@color/color_3dfefc"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_ffffff" />
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <TextView
+                        android:id="@+id/today_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/today_tv"
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/today_tv_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/today_tv"
+                        android:layout_centerHorizontal="true"
+                        android:text="260"
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_above="@+id/title_two_ll"
+            android:background="@color/color_ffffff" />
+
+
+    </RelativeLayout>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/smart_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title_rl"
+        android:background="@color/color_ffffff">
+
+        <ListView
+            android:id="@+id/listview_notify"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/color_ffffff"
+            android:dividerHeight="8dp"
+            android:scrollbars="none">
+
+        </ListView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+</RelativeLayout>

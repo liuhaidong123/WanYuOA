@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.oa.wanyu">
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.login.LoginActivity" />
+        <activity android:name=".activity.startPage.StartPageActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.ApplyActivity.ApplyActivityPage" />
+        <activity android:name=".activity.aBusinessTravelActivity.AbusinessTravelActivity" />
+        <activity android:name=".activity.leave.LeaveActivity" />
+        <activity android:name=".activity.outActivity.OutActivity" />
+        <activity android:name=".activity.reimbursementActivity.ReimbursementActivity" />
+        <activity android:name=".activity.reimbursementActivity.SelectPictureActivity" />
+        <activity android:name=".activity.goodsUseActivity.GoodsUseActivity" />
+        <activity android:name=".activity.goodsBuyActivity.GoodsBuyActivity" />
+        <activity android:name=".activity.currencyApply.CurrencyApplyActivity" />
+        <activity android:name=".activity.approvalActivity.ApprovalActivity" />
+        <activity android:name=".activity.rejectActivity.RejectActivity" />
+        <activity android:name=".activity.completeActivity.CompleteActivity" />
+        <activity android:name=".activity.invalidActivity.InvalidActivity" />
+        <activity android:name=".activity.SP_Activity.SPActivity" />
+        <activity android:name=".activity.aBusinessTravelActivity.AbusinessTravelMessageActivity" />
+        <activity android:name=".activity.leave.LeaveActivityMessageActivity" />
+        <activity android:name=".activity.outActivity.OutActivityMessageActivity" />
+        <activity android:name=".activity.reimbursementActivity.ReimbursementActivityMessageActivity" />
+        <activity android:name=".activity.goodsUseActivity.GoodsUseActivityMessageActivity" />
+        <activity android:name=".activity.goodsBuyActivity.GoodsBuyActivityMessageActivity" />
+        <activity android:name=".activity.currencyApply.CurrencyApplyActivityMessageActivity" />
+        <activity android:name=".activity.notice_activity.NoticeActivity" />
+        <activity android:name=".activity.to_do_today.ToDoTodayActivity"></activity>
+    </application>
+
+</manifest>

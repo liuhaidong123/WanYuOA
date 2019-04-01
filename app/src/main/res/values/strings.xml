@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">WanYuOA</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="register_tv">来访登记</string>
+    <string name="history_tv">历史来访</string>
+    <string name="today_tv">今日来访</string>
+    <string name="address">通讯录</string>
+    <string name="call_phone">拨打电话</string>
+    <string name="job">工作</string>
+    <string name="job_currency">通用</string>
+    <string name="house">楼房销售</string>
+    <string name="zs">招商出租</string>
+
+    <string name="sq_tv">申请</string>
+    <string name="sp_tv">审批</string>
+    <string name="gg_tv">公告</string>
+    <string name="db_tv">今日待办</string>
+
+    <string name="lp_tv">楼盘管理</string>
+    <string name="kh_tv">客户管理</string>
+    <string name="dl_tv">代理公司</string>
+    <string name="cs_tv">出售管理</string>
+    <string name="jf_tv">交房记录</string>
+    <string name="xs_tv">销售人员</string>
+    <string name="hf_tv">回访管理</string>
+    <string name="tj_tv">销售统计</string>
+    <string name="submit">提&#160;&#160;&#160;&#160;交</string>
+    <string name="withdraw">撤&#160;&#160;&#160;&#160;回</string>
+
+</resources>

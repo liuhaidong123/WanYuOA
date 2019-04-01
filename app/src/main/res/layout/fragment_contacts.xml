@@ -1,0 +1,79 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    tools:context="com.oa.wanyu.fragment.ContactsFragment">
+
+    <TextView
+        android:id="@+id/address_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="18dp"
+        android:text="@string/address"
+        android:textColor="@color/color_232323"
+        android:textSize="16sp" />
+
+    <RelativeLayout
+        android:id="@+id/search_title"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/address_title"
+        android:layout_margin="15dp"
+        android:background="@drawable/search_bg">
+
+        <ImageView
+            android:id="@+id/search_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="9dp"
+            android:src="@mipmap/search" />
+
+        <EditText
+            android:id="@+id/edit_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/search_id"
+            android:background="@null"
+            android:hint="搜索"
+            android:inputType="text"
+            android:paddingLeft="11dp"
+            android:paddingRight="11dp"
+            android:textColor="@color/color_232323"
+            android:textColorHint="@color/color_9c9c9c"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <!--<com.scwang.smartrefresh.layout.SmartRefreshLayout-->
+        <!--android:id="@+id/smart_refresh"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@id/search_title"-->
+        <!--android:background="@color/color_ffffff">-->
+
+        <ListView
+            android:layout_below="@id/search_title"
+            android:id="@+id/listview_contacts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:divider="@color/color_ffffff"
+            android:dividerHeight="8dp"
+            android:scrollbars="none">
+
+        </ListView>
+
+
+    <!--</com.scwang.smartrefresh.layout.SmartRefreshLayout>-->
+
+
+    <com.oa.wanyu.myutils.MyLetterListView
+        android:id="@+id/a_to_z_listview_id"
+        android:layout_width="25dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/search_title"
+        android:layout_marginRight="5dp" />
+</RelativeLayout>

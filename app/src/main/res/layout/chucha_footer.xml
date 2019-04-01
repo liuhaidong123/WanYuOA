@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff">
+
+    <TextView
+        android:id="@+id/add_trip"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/color_f9f9f9"
+        android:gravity="center"
+        android:text="+添加行程明细"
+        android:textColor="@color/color_3dacfe"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/chucha_reason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_trip"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:text="出差理由"
+        android:textColor="@color/color_000000"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/edit_reason"
+        android:layout_width="250dp"
+        android:layout_height="130dp"
+        android:layout_below="@+id/add_trip"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/chucha_reason"
+        android:background="@drawable/reason_bg"
+        android:gravity="left"
+        android:hint="请输入"
+        android:maxLength="300"
+        android:padding="5dp"
+        android:textColor="@color/color_000000"
+        android:textSize="12sp" />
+</RelativeLayout>

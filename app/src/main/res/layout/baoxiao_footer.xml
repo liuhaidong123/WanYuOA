@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff">
+
+    <TextView
+        android:id="@+id/add_bx"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/color_f9f9f9"
+        android:gravity="center"
+        android:text="+添加报销明细"
+        android:textColor="@color/color_3dacfe"
+        android:textSize="12sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_bx"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="13dp"
+        android:text="报销总金额(元)"
+        android:textColor="@color/color_000000"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/bx_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/add_bx"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="13dp"
+        android:text="0"
+        android:textColor="@color/color_000000"
+        android:textSize="12sp" />
+
+    <com.oa.wanyu.myutils.MyGridView
+        android:id="@+id/img_gridview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bx_tv"
+        android:layout_marginTop="10dp"
+        android:horizontalSpacing="5dp"
+        android:numColumns="3"
+        android:scrollbars="none"
+        android:verticalSpacing="5dp">
+
+
+    </com.oa.wanyu.myutils.MyGridView>
+</RelativeLayout>
