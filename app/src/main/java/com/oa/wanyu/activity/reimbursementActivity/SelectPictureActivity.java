@@ -74,7 +74,7 @@ public class SelectPictureActivity extends AppCompatActivity {
         mGridView.setAdapter(mAdapter);
 
         if (mImgList.size() != 0) {
-            mText.setText("完成(" + mImgList.size() + "/6)");
+            mText.setText("完成(" + mImgList.size() + "/3)");
         } else {
             mText.setText("完成");
         }
@@ -84,16 +84,16 @@ public class SelectPictureActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ImageView imageView = (ImageView) view.findViewById(R.id.select_small_img);
                 Log.e("文件", mAdapter.getItem(position).toString());
-                if (num != 6) {
+                if (num != 3) {
                     if (mImgList.contains(mAdapter.getItem(position))) {
                         mImgList.remove(mAdapter.getItem(position));
                         checkList.set(position, false);
                         num--;
-                        mText.setText("完成" + num + "/" + 6);
+                        mText.setText("完成" + num + "/" + 3);
                         imageView.setImageResource(R.mipmap.selectfa);
                     } else {
                         num++;
-                        mText.setText("完成" + num + "/" + 6);
+                        mText.setText("完成" + num + "/" + 3);
                         imageView.setImageResource(R.mipmap.selecttr);
                         mImgList.add(mAdapter.getItem(position).toString());
                         checkList.set(position, true);
@@ -102,11 +102,11 @@ public class SelectPictureActivity extends AppCompatActivity {
                     if (mImgList.contains(mAdapter.getItem(position))) {
                         mImgList.remove(mAdapter.getItem(position));
                         num--;
-                        mText.setText("完成" + num + "/" + 6);
+                        mText.setText("完成" + num + "/" + 3);
                         imageView.setImageResource(R.mipmap.selectfa);
                         checkList.set(position, false);
                     } else {
-                        Toast.makeText(SelectPictureActivity.this, "亲,最多选择" + 6 + "张图片哦", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SelectPictureActivity.this, "亲,最多选择" + 3 + "张图片哦", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

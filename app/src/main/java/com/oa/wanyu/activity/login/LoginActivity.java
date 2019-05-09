@@ -25,6 +25,8 @@ import com.oa.wanyu.myutils.SharedPrefrenceTools;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.jpush.android.api.JPushInterface;
+
 //登录
 public class LoginActivity extends AppCompatActivity {
     private SharedPrefrenceTools sharedPrefrenceTools;
@@ -58,6 +60,10 @@ public class LoginActivity extends AppCompatActivity {
                                 sharedPrefrenceTools.saveObject("Permission" + i, loginRoot.getUser().getPermission().get(i));
                             }
                             sharedPrefrenceTools.put("PermissionNum", loginRoot.getUser().getPermission().size());//存放功能数量
+
+                            //极光推送设置别名
+                            JPushInterface.setAlias(LoginActivity.this, 111, loginRoot.getUser().getMobile());
+
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             finish();
 

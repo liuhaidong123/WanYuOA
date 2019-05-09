@@ -107,7 +107,7 @@ public class AbusinessTravelActivity extends AppCompatActivity implements View.O
                 }
             } else {
                 //数据错误
-                Toast.makeText(AbusinessTravelActivity.this, "网络错误，请重新尝试", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AbusinessTravelActivity.this, "服务器连接失败，请重新尝试", Toast.LENGTH_SHORT).show();
             }
         }
     };

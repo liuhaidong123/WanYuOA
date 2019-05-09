@@ -38,6 +38,8 @@
             android:layout_toRightOf="@+id/search_id"
             android:background="@null"
             android:hint="搜索"
+            android:maxLines="1"
+            android:imeOptions="actionSearch"
             android:inputType="text"
             android:paddingLeft="11dp"
             android:paddingRight="11dp"
@@ -46,27 +48,25 @@
             android:textSize="14sp" />
     </RelativeLayout>
 
-    <!--<com.scwang.smartrefresh.layout.SmartRefreshLayout-->
-        <!--android:id="@+id/smart_refresh"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_below="@id/search_title"-->
-        <!--android:background="@color/color_ffffff">-->
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+    android:id="@+id/smart_refresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/search_title"
+    android:background="@color/color_ffffff">
 
-        <ListView
-            android:layout_below="@id/search_title"
-            android:id="@+id/listview_contacts"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+    <ListView
+        android:id="@+id/listview_contacts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/color_ffffff"
+        android:dividerHeight="8dp"
+        android:scrollbars="none">
 
-            android:divider="@color/color_ffffff"
-            android:dividerHeight="8dp"
-            android:scrollbars="none">
-
-        </ListView>
+    </ListView>
 
 
-    <!--</com.scwang.smartrefresh.layout.SmartRefreshLayout>-->
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 
     <com.oa.wanyu.myutils.MyLetterListView
@@ -76,4 +76,33 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/search_title"
         android:layout_marginRight="5dp" />
+
+
+    <RelativeLayout
+        android:id="@+id/no_data_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/search_title"
+        android:background="@color/color_ffffff"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/no_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_data" />
+
+        <TextView
+            android:id="@+id/no_mess_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/no_img"
+            android:layout_centerHorizontal="true"
+            android:text=""
+            android:textColor="@color/color_0e3247"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
 </RelativeLayout>

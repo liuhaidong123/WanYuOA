@@ -9,27 +9,27 @@ import java.util.List;
  */
 
 public class ReimbursementBean {
-    private String money;
-    private String type;
+    private String amount;
+    private String typ;
 
-    public ReimbursementBean(String money, String type) {
-        this.money = money;
-        this.type = type;
+    public ReimbursementBean(String amount, String typ) {
+        this.amount = amount;
+        this.typ = typ;
     }
 
-    public String getMoney() {
-        return money;
+    public String getAmount() {
+        return amount;
     }
 
-    public void setMoney(String money) {
-        this.money = money;
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
-    public String getType() {
-        return type;
+    public String getTyp() {
+        return typ;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTyp(String typ) {
+        this.typ = typ;
     }
 }

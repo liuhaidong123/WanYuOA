@@ -27,6 +27,15 @@
     <string name="hf_tv">回访管理</string>
     <string name="tj_tv">销售统计</string>
     <string name="submit">提&#160;&#160;&#160;&#160;交</string>
+    <string name="select">查&#160;&#160;&#160;&#160;看</string>
     <string name="withdraw">撤&#160;&#160;&#160;&#160;回</string>
+    <string name="sign">标&#160;记&#160;为&#160;已&#160;售</string>
+
+    <string name="shops_manage">商铺查看</string>
+
+    <string name="house_rent_name">
+        <font color="#00bfff">变色的文字</font>
+     </string>
+
 
 </resources>

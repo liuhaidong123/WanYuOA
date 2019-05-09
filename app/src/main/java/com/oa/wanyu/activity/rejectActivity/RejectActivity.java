@@ -161,33 +161,47 @@ public class RejectActivity extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i == 0) {//出差详情页面
+                if (mList.get(i).getMsgType() == 35) {//出差详情页面
                     Intent intent = new Intent(RejectActivity.this, AbusinessTravelMessageActivity.class);
                     intent.putExtra("flag", flag);
+                    intent.putExtra("show_flag",200);
+                    intent.putExtra("id", mList.get(i).getReferId());
                     startActivity(intent);
-                } else if (i == 1) {//请假
+                } else if (mList.get(i).getMsgType() == 15) {//请假
                     Intent intent = new Intent(RejectActivity.this, LeaveActivityMessageActivity.class);
                     intent.putExtra("flag", flag);
+                    intent.putExtra("show_flag",200);
+                    intent.putExtra("id", mList.get(i).getReferId());
                     startActivity(intent);
-                } else if (i == 2) {//外出
+                } else if (mList.get(i).getMsgType() == 20) {//外出
                     Intent intent = new Intent(RejectActivity.this, OutActivityMessageActivity.class);
                     intent.putExtra("flag", flag);
+                    intent.putExtra("show_flag",200);
+                    intent.putExtra("id", mList.get(i).getReferId());
                     startActivity(intent);
-                } else if (i == 3) {//报销
+                } else if (mList.get(i).getMsgType() == 30) {//报销
                     Intent intent = new Intent(RejectActivity.this, ReimbursementActivityMessageActivity.class);
                     intent.putExtra("flag", flag);
+                    intent.putExtra("show_flag",200);
+                    intent.putExtra("id", mList.get(i).getReferId());
                     startActivity(intent);
-                } else if (i == 4) {//物品领用
+                } else if (mList.get(i).getMsgType() == 25) {//物品领用
                     Intent intent = new Intent(RejectActivity.this, GoodsUseActivityMessageActivity.class);
                     intent.putExtra("flag", flag);
+                    intent.putExtra("show_flag",200);
+                    intent.putExtra("id", mList.get(i).getReferId());
                     startActivity(intent);
-                } else if (i == 5) {//物品申购
+                } else if (mList.get(i).getMsgType() == 10) {//物品申购
                     Intent intent = new Intent(RejectActivity.this, GoodsBuyActivityMessageActivity.class);
                     intent.putExtra("flag", flag);
+                    intent.putExtra("show_flag",200);
+                    intent.putExtra("id", mList.get(i).getReferId());
                     startActivity(intent);
-                } else if (i == 6) {//通用申请
+                } else if (mList.get(i).getMsgType() == 40) {//通用申请
                     Intent intent = new Intent(RejectActivity.this, CurrencyApplyActivityMessageActivity.class);
                     intent.putExtra("flag", flag);
+                    intent.putExtra("show_flag",200);
+                    intent.putExtra("id", mList.get(i).getReferId());
                     startActivity(intent);
                 }
             }

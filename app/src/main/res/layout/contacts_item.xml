@@ -34,14 +34,28 @@
                 android:textSize="13sp" />
 
             <TextView
-                android:id="@+id/contacts_job"
+                android:id="@+id/contacts_department"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/contacts_name"
                 android:layout_marginTop="8dp"
                 android:ellipsize="end"
+                android:maxLength="20"
+                android:text="部门：软件部"
+                android:textColor="@color/color_b9b9b9"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/contacts_job"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/contacts_name"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@+id/contacts_department"
+                android:ellipsize="end"
                 android:maxLines="1"
-                android:text="部门：软件部       职位：部门经理"
+                android:text="职位：经理"
                 android:textColor="@color/color_b9b9b9"
                 android:textSize="10sp" />
         </RelativeLayout>

@@ -2,21 +2,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
     tools:context="com.oa.wanyu.fragment.MessageFragment">
+
+    <TextView
+        android:id="@+id/me"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:text="消息"
+        android:textColor="@color/color_232323"
+        android:textSize="16sp" />
 
     <RelativeLayout
         android:id="@+id/title_rl"
         android:layout_width="match_parent"
         android:layout_height="238dp"
-        android:background="@color/color_b9b9b9">
+        android:background="@color/color_b9b9b9"
+        android:visibility="gone">
+
         <TextView
-            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="18dp"
-            android:textColor="@color/color_232323"
             android:text="消息"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/color_232323"
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="100dp"
@@ -67,10 +80,10 @@
             </RelativeLayout>
 
             <View
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="2dp"
                 android:layout_width="2dp"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
                 android:background="@color/color_ffffff" />
 
             <RelativeLayout
@@ -119,7 +132,7 @@
         android:id="@+id/smart_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/title_rl"
+        android:layout_below="@id/me"
         android:background="@color/color_ffffff">
 
         <ListView
@@ -132,5 +145,32 @@
 
         </ListView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <RelativeLayout
+        android:id="@+id/no_data_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/me"
+        android:background="@color/color_ffffff"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/no_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_data" />
+
+        <TextView
+            android:id="@+id/no_mess_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/no_img"
+            android:layout_centerHorizontal="true"
+            android:text="空空如也"
+            android:textColor="@color/color_0e3247"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
 </RelativeLayout>

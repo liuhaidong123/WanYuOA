@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/color_ffffff"
     tools:context="com.oa.wanyu.activity.reimbursementActivity.ReimbursementActivity">
+
     <RelativeLayout
         android:id="@+id/bx_rl"
         android:layout_width="match_parent"
@@ -38,8 +39,8 @@
         android:layout_above="@+id/bx_submit"
         android:layout_below="@+id/bx_rl"
         android:layout_marginBottom="10dp"
-        android:dividerHeight="0dp"
         android:divider="@color/color_f9f9f9"
+        android:dividerHeight="0dp"
         android:scrollbars="none">
 
     </ListView>
@@ -56,4 +57,11 @@
         android:text="@string/submit"
         android:textColor="@color/color_ffffff"
         android:textSize="15sp" />
+
+    <ImageView
+        android:scaleType="centerCrop"
+        android:id="@+id/big_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 </RelativeLayout>

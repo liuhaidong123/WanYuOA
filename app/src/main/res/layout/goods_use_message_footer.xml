@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/color_ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <View
+        android:id="@+id/add_goods_use"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_f9f9f9"
+        android:gravity="center"
+        android:textSize="12sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/color_ffffff">
+
+        <TextView
+            android:id="@+id/goods_reason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/add_trip"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="领用详情"
+            android:textColor="@color/color_000000"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/edit_goods_use_mess_reason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/add_trip"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/goods_reason"
+            android:background="@null"
+            android:gravity="left"
+            android:hint=""
+            android:enabled="false"
+            android:text=""
+            android:padding="5dp"
+            android:textColor="@color/color_000000"
+            android:textSize="12sp" />
+    </RelativeLayout>
+</LinearLayout>

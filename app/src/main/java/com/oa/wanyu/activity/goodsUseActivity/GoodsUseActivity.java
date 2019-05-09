@@ -239,6 +239,11 @@ public class GoodsUseActivity extends AppCompatActivity {
 
                 @Override
                 public void afterTextChanged(Editable editable) {
+                    String text=editable.toString();
+                    int len=editable.toString().length();
+                    if (len>1&&text.startsWith("0")){
+                        editable.replace(0,1,"");
+                    }
                     if (editable.length()!=0){
                         myList.get(i).setNum(Integer.valueOf("" + editable));
                     }else {

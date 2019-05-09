@@ -47,7 +47,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-//审批中
+//申请中的-审批中
 public class ApprovalActivity extends AppCompatActivity {
     private ImageView mbcak;
     private RelativeLayout mAll_RL,no_data_rl;
@@ -120,6 +120,8 @@ public class ApprovalActivity extends AppCompatActivity {
             }else {
                 //数据错误
                 Toast.makeText(ApprovalActivity.this, "网络错误，请重新尝试", Toast.LENGTH_SHORT).show();
+                no_data_rl.setVisibility(View.VISIBLE);
+                no_mess_tv.setText("网络错误,请重新尝试");
             }
         }
     };
@@ -161,34 +163,41 @@ public class ApprovalActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //flag = 2;表示申请中的审批中跳过去的，显示撤回按钮
-                if (i == 0) {//出差详情页面
+                if (mList.get(i).getMsgType()==35) {//出差详情页面
                     Intent intent = new Intent(ApprovalActivity.this, AbusinessTravelMessageActivity.class);
                     intent.putExtra("flag", flag);
-                    startActivity(intent);
-                } else if (i == 1) {//请假
+                    intent.putExtra("id",mList.get(i).getReferId());
+                    startActivityForResult(intent,1);
+                } else if (mList.get(i).getMsgType()==15) {//请假
                     Intent intent = new Intent(ApprovalActivity.this, LeaveActivityMessageActivity.class);
                     intent.putExtra("flag", flag);
-                    startActivity(intent);
-                } else if (i == 2) {//外出
+                    intent.putExtra("id",mList.get(i).getReferId());
+                    startActivityForResult(intent,1);
+                } else if (mList.get(i).getMsgType()==20) {//外出
                     Intent intent = new Intent(ApprovalActivity.this, OutActivityMessageActivity.class);
                     intent.putExtra("flag", flag);
-                    startActivity(intent);
-                } else if (i == 3) {//报销
+                    intent.putExtra("id",mList.get(i).getReferId());
+                    startActivityForResult(intent,1);
+                } else if (mList.get(i).getMsgType()==30) {//报销
                     Intent intent = new Intent(ApprovalActivity.this, ReimbursementActivityMessageActivity.class);
                     intent.putExtra("flag", flag);
-                    startActivity(intent);
-                } else if (i == 4) {//物品领用
+                    intent.putExtra("id",mList.get(i).getReferId());
+                    startActivityForResult(intent,1);
+                } else if (mList.get(i).getMsgType()==25) {//物品领用
                     Intent intent = new Intent(ApprovalActivity.this, GoodsUseActivityMessageActivity.class);
                     intent.putExtra("flag", flag);
-                    startActivity(intent);
-                } else if (i == 5) {//物品申购
+                    intent.putExtra("id",mList.get(i).getReferId());
+                    startActivityForResult(intent,1);
+                } else if (mList.get(i).getMsgType()==10) {//物品申购
                     Intent intent = new Intent(ApprovalActivity.this, GoodsBuyActivityMessageActivity.class);
                     intent.putExtra("flag", flag);
-                    startActivity(intent);
-                } else if (i == 6) {//通用申请
+                    intent.putExtra("id",mList.get(i).getReferId());
+                    startActivityForResult(intent,1);
+                } else if (mList.get(i).getMsgType()==40) {//通用申请
                     Intent intent = new Intent(ApprovalActivity.this, CurrencyApplyActivityMessageActivity.class);
                     intent.putExtra("flag", flag);
-                    startActivity(intent);
+                    intent.putExtra("id",mList.get(i).getReferId());
+                    startActivityForResult(intent,1);
                 }
             }
         });
@@ -305,6 +314,17 @@ public class ApprovalActivity extends AppCompatActivity {
             TextView status, name, bumen, job, time;
             CircleImg circleImg;
             RelativeLayout title_rl;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==1&&resultCode==RESULT_OK){
+            refresh=0;
+            start=0;
+            url= URLTools.urlBase+URLTools.apply_all_status+"msgStatus="+0+"&start="+start+"&limit="+limit;
+            okHttpManager.getMethod(false,url,"审批中列表",handler,1);
         }
     }
 }

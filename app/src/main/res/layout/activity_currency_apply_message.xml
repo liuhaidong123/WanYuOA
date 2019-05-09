@@ -39,76 +39,67 @@
         android:layout_below="@+id/currency_rl"
         android:background="@color/color_f9f9f9" />
 
-    <RelativeLayout
-        android:id="@+id/w"
+    <TextView
+        android:id="@+id/apply_content_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wq"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:text="申请内容:"
+        android:textColor="@color/color_000000"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/apply_content_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/wq"
-        android:layout_marginTop="1dp"
-        android:background="@color/color_ffffff"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp">
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/apply_content_1"
+        android:gravity="center_vertical"
+        android:text=""
+        android:textColor="@color/color_000000"
+        android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/all_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+    <View
+        android:id="@+id/line_2"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/apply_content_edit"
+        android:layout_marginTop="10dp"
+        android:background="@color/color_f9f9f9" />
 
-            android:text="申请内容"
-            android:textColor="@color/color_000000"
-            android:textSize="12sp" />
+    <TextView
+        android:id="@+id/apply_mess_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line_2"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:text="申请详情:"
+        android:textColor="@color/color_000000"
+        android:textSize="12sp" />
 
-        <EditText
-            android:id="@+id/apply_content_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/all_price"
-            android:background="@null"
-            android:enabled="false"
-            android:gravity="end|center_vertical"
-            android:text=""
-            android:textColor="@color/color_000000"
-            android:textSize="12sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
+    <TextView
+        android:id="@+id/apply_mess_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/w"
-        android:layout_marginTop="1dp"
-        android:background="@color/color_ffffff">
-
-        <TextView
-            android:id="@+id/goods_reason"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:text="申请详情"
-            android:textColor="@color/color_000000"
-            android:textSize="12sp" />
-
-        <EditText
-            android:id="@+id/apply_mess_edit"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@+id/goods_reason"
-            android:background="@null"
-            android:enabled="false"
-            android:gravity="left"
-            android:hint=""
-            android:maxLength="300"
-            android:padding="5dp"
-            android:text=""
-            android:textColor="@color/color_000000"
-            android:textSize="12sp" />
-    </RelativeLayout>
-
+        android:layout_below="@+id/line_2"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/apply_mess_2"
+        android:gravity="center_vertical"
+        android:text=""
+        android:textColor="@color/color_000000"
+        android:textSize="12sp" />
 
     <!--同意驳回的按钮只有在待审批详情中才会显示-->
     <LinearLayout
@@ -157,5 +148,40 @@
             android:textSize="15sp"
             android:visibility="gone" />
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/no_data_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/currency_rl"
+        android:layout_marginTop="5dp"
+        android:background="@color/color_ffffff"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/no_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_data" />
+
+        <TextView
+            android:id="@+id/no_mess_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/no_img"
+            android:layout_centerHorizontal="true"
+            android:text=""
+            android:textColor="@color/color_0e3247"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/show_sign"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/currency_rl"
+        android:visibility="gone" />
 
 </RelativeLayout>

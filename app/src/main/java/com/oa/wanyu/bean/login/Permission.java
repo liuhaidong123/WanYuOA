@@ -1,10 +1,12 @@
 package com.oa.wanyu.bean.login;
 
+import java.io.Serializable;
+
 /**
  * Created by liuhaidong on 2019/3/19.
  */
 
-public class Permission {
+public class Permission implements Serializable{
     private int status;
 
     private String createTime;

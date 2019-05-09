@@ -163,6 +163,7 @@ public class GoodsBuyActivity extends AppCompatActivity {
         all_price = footer.findViewById(R.id.goods_buy_all_price_tv);
     }
 
+    private int point=2;
     class GoodsBuyAda extends BaseAdapter {
         public void addItem() {
             myList.add(new GoodsBuyBean("", "", "", "", "", ""));
@@ -282,15 +283,49 @@ public class GoodsBuyActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+                    //删除“.”后面超过2位后的数据
+                    if (s.toString().contains(".")) {
+                        if (s.length() - 1 - s.toString().indexOf(".") > point) {
+                            s = s.toString().subSequence(0,
+                                    s.toString().indexOf(".") + point+1);
+                            goodsBuyHolder.unitprice.setText(s);
+                            goodsBuyHolder.unitprice.setSelection(s.length()); //光标移到最后
+                        }
+                    }
+                    //如果"."在起始位置,则起始位置自动补0
+                    if (s.toString().trim().substring(0).equals(".")) {
+                        s = "0" + s;
+                        goodsBuyHolder.unitprice.setText(s);
+                        goodsBuyHolder.unitprice.setSelection(2);
+                    }
 
+                    //如果起始位置为0,且第二位跟的不是".",则无法后续输入
+                    if (s.toString().startsWith("0")
+                            && s.toString().trim().length() > 1) {
+                        if (!s.toString().substring(1, 2).equals(".")) {
+                            goodsBuyHolder.unitprice.setText(s.subSequence(0, 1));
+                            goodsBuyHolder.unitprice.setSelection(1);
+                            return;
+                        }
+                    }
                 }
 
                 @Override
                 public void afterTextChanged(Editable editable) {
                     //判断输入单价是不是正确的类型
                     if (DoubleUtils.myDoubleC(editable + "")) {
-                        myList.get(i).setPrice(editable + "");//保存单价数据
+                        if (editable.toString().contains(".")) {
+                            if (editable.length() - 1 - editable.toString().indexOf(".") > point) {
+                                CharSequence sequence1 = editable.toString().subSequence(0, editable.toString().indexOf(".") + point + 1);
+                                myList.get(i).setPrice(sequence1 + "");//保存数据
+                            }else {
+                                myList.get(i).setPrice(editable + "");//保存数据
+                            }
+                        }else {
+                            myList.get(i).setPrice(editable + "");//保存数据
+                        }
+
 //
                     } else {
                         myList.get(i).setPrice("0");//保存单价数据
@@ -308,8 +343,7 @@ public class GoodsBuyActivity extends AppCompatActivity {
                     double num = Double.valueOf(myList.get(i).getNum());
                     String allPrice = String.format("%.1f", unitPrice * num);
                     ;//保留1位小数点
-                    //double d=unitPrice*num;
-                    //String allPrice=String.valueOf(d);
+
                     myList.get(i).setAmount(allPrice + "");
                     goodsBuyHolder.allprice.setText(allPrice);
 
@@ -341,6 +375,11 @@ public class GoodsBuyActivity extends AppCompatActivity {
 
                 @Override
                 public void afterTextChanged(Editable editable) {
+                    String text=editable.toString();
+                    int len=editable.toString().length();
+                    if (len>1&&text.startsWith("0")){
+                        editable.replace(0,1,"");
+                    }
                     //判断输入单价是不是正确的类型
                     if (DoubleUtils.myDoubleC(goodsBuyHolder.unitprice.getText().toString())) {
                         myList.get(i).setPrice(goodsBuyHolder.unitprice.getText().toString() + "");//保存单价数据

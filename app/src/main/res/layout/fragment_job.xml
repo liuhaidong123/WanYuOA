@@ -619,7 +619,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7dp"
-                            android:text="商铺管理"
+                            android:text="商铺查看"
                             android:textColor="@color/color_000000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -938,12 +938,12 @@
                 android:background="@color/color_ededed" />
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/liner3432_one"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_below="@+id/job_line2567"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <!--报事报修-->
                 <LinearLayout
@@ -1098,20 +1098,20 @@
             </LinearLayout>
 
             <View
-                android:visibility="gone"
                 android:id="@+id/job_line6361"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_below="@+id/liner3432_one"
-                android:background="@color/color_ededed" />
+                android:background="@color/color_ededed"
+                android:visibility="gone" />
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/liner_two2223"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_below="@+id/job_line6361"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <!--设备管理-->
                 <LinearLayout

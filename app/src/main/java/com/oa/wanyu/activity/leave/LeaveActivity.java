@@ -346,7 +346,7 @@ public class LeaveActivity extends AppCompatActivity {
                     Date currentDate = dateformat.parse(year + "-" + month2 + "-" + day2 + " 00:00:00");
                     //开始时间必须大于等于当前时间，结束时间必须大于当前时间，结束时间必须大于等于开始时间
                     if (startDate.getTime() - currentDate.getTime() >= 0 && endDate.getTime() - currentDate.getTime() >= 0 && endDate.getTime() - startDate.getTime() >= 0) {//判断开始时间是否大于当前时间
-                        double betweenDays = ((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+                        long betweenDays = ((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
                         dayTv.setText(betweenDays + 1 + "");//设置天数
                         return true;
                     } else {

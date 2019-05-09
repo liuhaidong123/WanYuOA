@@ -62,7 +62,6 @@
             android:hint=""
             android:inputType="numberDecimal"
             android:maxLength="7"
-            android:paddingRight="10dp"
             android:text="520"
             android:textColor="@color/color_000000"
             android:textSize="12sp" />

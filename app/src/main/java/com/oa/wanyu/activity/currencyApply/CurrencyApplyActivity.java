@@ -106,7 +106,7 @@ public class CurrencyApplyActivity extends AppCompatActivity {
                         BallProgressUtils.showLoading(CurrencyApplyActivity.this,mAll);
                         Map<Object,Object> map=new HashMap<Object, Object>();
                         map.put("content",content_edit.getText().toString());
-                        map.put("detail",content_edit.getText().toString());
+                        map.put("detail",mess_edit.getText().toString());
                         okHttpManager.postMethod(false,url,"提交通用申请",map,handler,1);
                     }else {
                         Toast.makeText(CurrencyApplyActivity.this, "请填写申请详情", Toast.LENGTH_SHORT).show();

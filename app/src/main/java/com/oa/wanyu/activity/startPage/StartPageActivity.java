@@ -78,10 +78,16 @@ public class StartPageActivity extends AppCompatActivity {
                     e.printStackTrace();
 
                     Toast.makeText(StartPageActivity.this, "数据解析错误,请重新尝试", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(StartPageActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
 
             } else {
                 Toast.makeText(StartPageActivity.this, "连接服务器失败，请重新尝试", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(StartPageActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         }
     };

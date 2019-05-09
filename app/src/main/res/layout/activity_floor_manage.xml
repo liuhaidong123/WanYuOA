@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_floor_manage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    tools:context="com.oa.wanyu.activity.floorManage.FloorManageActivity">
+
+    <RelativeLayout
+        android:id="@+id/bx_rl"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <ImageView
+            android:id="@+id/back_img"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="15dp"
+            android:src="@mipmap/back_img" />
+
+        <TextView
+            android:id="@+id/sq_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="楼盘管理"
+            android:textColor="@color/color_232323"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/linel"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/bx_rl"
+        android:background="@color/color_ededed" />
+
+    <RelativeLayout
+        android:id="@+id/address_rl"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/linel"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/floor_manage_bg">
+
+        <TextView
+            android:id="@+id/address_mess_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toLeftOf="@+id/sanjiao"
+            android:layout_toRightOf="@+id/type_tv"
+            android:ellipsize="end"
+            android:gravity="left|center_vertical"
+            android:maxLines="1"
+            android:paddingRight="8dp"
+            android:text="翡翠华府"
+            android:textColor="@color/color_000000"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/sanjiao"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:src="@mipmap/sanjiao" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/floor_rl"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/address_rl"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/floor_manage_bg">
+
+        <TextView
+            android:id="@+id/floor_mess_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toLeftOf="@+id/sanjiao2"
+            android:layout_toRightOf="@+id/type_tv"
+            android:ellipsize="end"
+            android:gravity="left|center_vertical"
+            android:maxLines="1"
+            android:paddingRight="8dp"
+            android:text="二号楼"
+            android:textColor="@color/color_000000"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/sanjiao2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:src="@mipmap/sanjiao" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/unit_rl"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/floor_rl"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/floor_manage_bg">
+
+        <TextView
+            android:id="@+id/unit_mess_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toLeftOf="@+id/sanjiao3"
+            android:layout_toRightOf="@+id/type_tv"
+            android:ellipsize="end"
+            android:gravity="left|center_vertical"
+            android:maxLines="1"
+            android:paddingRight="8dp"
+            android:text="三单元"
+            android:textColor="@color/color_000000"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/sanjiao3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:src="@mipmap/sanjiao" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/select_submit"
+        android:layout_width="330dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/register_bg"
+        android:gravity="center"
+        android:text="@string/select"
+        android:textColor="@color/color_ffffff"
+        android:textSize="15sp" />
+
+</RelativeLayout>
