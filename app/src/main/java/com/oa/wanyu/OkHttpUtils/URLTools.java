@@ -66,4 +66,6 @@ public class URLTools {
 
     public static String expire_remind = "/mobileapi/shop/findRemaining.do?";//到期提醒列表
 
+    public static String floor_address_list="/mobileapi/building/findList.do?";//楼盘地址列表
+
 }

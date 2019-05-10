@@ -99,14 +99,47 @@
             android:textSize="12sp" />
     </LinearLayout>
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/floor_refresh_id"
-        android:layout_width="match_parent"
+    <!--<com.scwang.smartrefresh.layout.SmartRefreshLayout-->
+        <!--android:id="@+id/floor_refresh_id"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@id/a"-->
+        <!--android:layout_marginBottom="20dp"-->
+        <!--android:layout_marginTop="15dp"-->
+
+        <!--&gt;-->
+
+
+        <GridView
+            android:layout_below="@id/a"
+            android:id="@+id/floor_gridview_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/color_ffffff"
+            android:horizontalSpacing="1dp"
+            android:numColumns="5"
+            android:verticalSpacing="1dp">
+
+        </GridView>
+
+
+    <!--</com.scwang.smartrefresh.layout.SmartRefreshLayout>-->
+
+    <ListView
+        android:divider="@null"
+        android:dividerHeight="1dp"
+        android:id="@+id/floor_listview"
+        android:layout_width="30dp"
         android:layout_height="match_parent"
         android:layout_below="@id/a"
         android:layout_marginBottom="20dp"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="15dp"
+        android:background="@color/color_ffffff"
+        android:scrollbars="none">
 
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-
+    </ListView>
 </RelativeLayout>

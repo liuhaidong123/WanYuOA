@@ -1,6 +1,8 @@
 package com.oa.wanyu.activity.floorManage;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.oa.wanyu.OkHttpUtils.OkHttpManager;
 import com.oa.wanyu.R;
 import com.oa.wanyu.activity.reimbursementActivity.ReimbursementActivity;
 
@@ -34,6 +38,16 @@ public class FloorManageActivity extends AppCompatActivity {
     private List<String> addressList=new ArrayList();
     private List<String> floorList=new ArrayList();
     private List<String> unitList=new ArrayList();
+
+    private String url;
+    private OkHttpManager okHttpManager;
+    private Gson gson=new Gson();
+    private Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,7 +125,7 @@ public class FloorManageActivity extends AppCompatActivity {
         unit_alertDialog=   unit_builder.create();
         View unitview = LayoutInflater.from(this).inflate(R.layout.unit_alert, null);
         unit_alertDialog.setView(unitview);
-        mUnitListView=floorview.findViewById(R.id.unit_listview_id);
+        mUnitListView=unitview.findViewById(R.id.unit_listview_id);
         unitAdapter=new UnitAdapter();
         mUnitListView.setAdapter(unitAdapter);
         mUnitListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
