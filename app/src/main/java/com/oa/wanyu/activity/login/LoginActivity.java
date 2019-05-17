@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
 
             } else {
                 //数据错误
-                Toast.makeText(LoginActivity.this, "网络错误，请重新尝试", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "连接服务器失败，请重新尝试", Toast.LENGTH_SHORT).show();
             }
         }
     };

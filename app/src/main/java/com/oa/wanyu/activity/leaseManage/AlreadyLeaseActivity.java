@@ -213,6 +213,8 @@ public class AlreadyLeaseActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private ImageView show_img;
 
+    private AlertDialog.Builder oneBuilder,tooBuilder,threeBuilder;
+    private AlertDialog oneAlertDialog,twoAlertDialog,threeAlertDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -309,8 +311,7 @@ public class AlreadyLeaseActivity extends AppCompatActivity {
         return true;
     }
 
-    private AlertDialog.Builder oneBuilder,tooBuilder,threeBuilder;
-    private AlertDialog oneAlertDialog,twoAlertDialog,threeAlertDialog;
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

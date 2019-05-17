@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_floor_house_information"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    tools:context="com.oa.wanyu.activity.floorManage.FloorHouseInformationActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/bx_rl"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <ImageView
+            android:id="@+id/back_img"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="15dp"
+            android:src="@mipmap/back_img" />
+
+        <TextView
+            android:id="@+id/sq_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:maxLines="1"
+                android:ellipsize="end"
+            android:gravity="center"
+            android:text="f房屋信息几号楼几单元几零几"
+            android:textColor="@color/color_232323"
+            android:textSize="16sp" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <View
+        android:id="@+id/linel"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/bx_rl"
+        android:background="@color/color_ededed" />
+
+    <ImageView
+        android:id="@+id/house_img"
+        android:layout_margin="15dp"
+        android:layout_below="@+id/linel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

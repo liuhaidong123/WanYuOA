@@ -94,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="不可售"
+            android:text="预定"
             android:textColor="@color/color_b9b9b9"
             android:textSize="12sp" />
     </LinearLayout>
@@ -115,7 +115,7 @@
             android:id="@+id/floor_gridview_id"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="20dp"
@@ -129,17 +129,4 @@
 
     <!--</com.scwang.smartrefresh.layout.SmartRefreshLayout>-->
 
-    <ListView
-        android:divider="@null"
-        android:dividerHeight="1dp"
-        android:id="@+id/floor_listview"
-        android:layout_width="30dp"
-        android:layout_height="match_parent"
-        android:layout_below="@id/a"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/color_ffffff"
-        android:scrollbars="none">
-
-    </ListView>
 </RelativeLayout>

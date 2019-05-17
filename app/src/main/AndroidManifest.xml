@@ -250,7 +250,8 @@
         <activity android:name=".activity.leaseManage.ExpireRemindctivity" />
         <activity android:name=".activity.leaseManage.ExpireRemindMessageActivity" />
         <activity android:name=".activity.floorManage.FloorManageActivity" />
-        <activity android:name=".activity.floorManage.FloorMessageActivity"></activity>
+        <activity android:name=".activity.floorManage.FloorMessageActivity" />
+        <activity android:name=".activity.floorManage.FloorHouseInformationActivity"></activity>
     </application>
 
 </manifest>
