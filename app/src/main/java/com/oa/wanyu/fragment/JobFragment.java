@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.oa.wanyu.R;
+import com.oa.wanyu.activity.AgentCompany.AgentCompanyActivity;
 import com.oa.wanyu.activity.ApplyActivity.ApplyActivityPage;
+import com.oa.wanyu.activity.Customer.CustomerActivity;
 import com.oa.wanyu.activity.SP_Activity.SPActivity;
 import com.oa.wanyu.activity.floorManage.FloorManageActivity;
 import com.oa.wanyu.activity.leaseManage.ExpireRemindctivity;
@@ -22,7 +24,7 @@ import com.oa.wanyu.activity.shopsManage.ShopsManagectivity;
  * 工作
  */
 public class JobFragment extends Fragment implements View.OnClickListener {
-    private LinearLayout mShengQin_ll,mSP_ll,mGongGao_ll,mShang_Pu_ll,mChu_Zu_ll,Expire_ll,floorManage_ll;
+    private LinearLayout mShengQin_ll,mSP_ll,mGongGao_ll,mShang_Pu_ll,mChu_Zu_ll,Expire_ll,floorManage_ll,ke_hu_ll,agent_ll;
 
     public JobFragment() {
         // Required empty public constructor
@@ -59,6 +61,12 @@ public class JobFragment extends Fragment implements View.OnClickListener {
 
         floorManage_ll= view.findViewById(R.id.loupan_ll);
         floorManage_ll.setOnClickListener(this);
+
+        ke_hu_ll= view.findViewById(R.id.kehu_ll);
+        ke_hu_ll.setOnClickListener(this);
+
+        agent_ll= view.findViewById(R.id.daili_ll);
+        agent_ll.setOnClickListener(this);
     }
 
     @Override
@@ -85,6 +93,12 @@ public class JobFragment extends Fragment implements View.OnClickListener {
             startActivity(i);
         }else if (id==floorManage_ll.getId()){//楼盘管理
             Intent i=new Intent(getActivity(),FloorManageActivity.class);
+            startActivity(i);
+        }else if (id==ke_hu_ll.getId()){//跳转客户管理
+            Intent i=new Intent(getActivity(),CustomerActivity.class);
+            startActivity(i);
+        }else if (id==agent_ll.getId()){//跳转代理公司
+            Intent i=new Intent(getActivity(),AgentCompanyActivity.class);
             startActivity(i);
         }
     }

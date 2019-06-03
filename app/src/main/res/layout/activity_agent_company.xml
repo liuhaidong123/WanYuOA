@@ -1,62 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_floor_house_information"
+    android:id="@+id/activity_agent_company"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_ffffff"
-    tools:context="com.oa.wanyu.activity.floorManage.FloorHouseInformationActivity">
+    tools:context="com.oa.wanyu.activity.AgentCompany.AgentCompanyActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/bx_rl"
+    <RelativeLayout
+        android:id="@+id/t_tle"
         android:layout_width="match_parent"
-        android:layout_height="48dp">
+        android:layout_height="44dp">
 
         <ImageView
             android:id="@+id/back_img"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            android:paddingLeft="10dp"
+            android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:src="@mipmap/back_img" />
 
         <TextView
-            android:id="@+id/sq_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="代理公司"
+            android:textColor="@color/color_000000"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/my_smartrefresh_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/t_tle">
+
+        <ListView
+            android:id="@+id/my_listview_id"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:maxLines="1"
-                android:ellipsize="end"
-            android:gravity="center"
-            android:text="f房屋信息几号楼几单元几零几"
-            android:textColor="@color/color_232323"
-            android:textSize="16sp" />
+            android:layout_marginLeft="11dp"
+            android:layout_marginRight="11dp"
+            android:divider="@null"
+            android:scrollbars="none">
 
-    </android.support.v7.widget.Toolbar>
-
-    <View
-        android:id="@+id/linel"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/bx_rl"
-        android:background="@color/color_ededed" />
-
-    <ImageView
-        android:id="@+id/house_img"
-        android:layout_margin="15dp"
-        android:layout_below="@+id/linel"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        </ListView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
     <RelativeLayout
-        android:visibility="gone"
         android:id="@+id/no_data_rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/linel"
+        android:layout_below="@id/t_tle"
         android:background="@color/color_ffffff"
-      >
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/no_img"
@@ -71,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/no_img"
             android:layout_centerHorizontal="true"
-            android:text=""
+            android:text="空空如也"
             android:textColor="@color/color_0e3247"
             android:textSize="12sp"
             android:textStyle="bold" />

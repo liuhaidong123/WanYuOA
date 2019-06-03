@@ -6,7 +6,7 @@ package com.oa.wanyu.OkHttpUtils;
 
 public class URLTools {
     public static String urlBase = "http://192.168.1.168:8086";
-    public static String login_url = "/admin/login";//登录接口 post 参数name手机号，password密码
+    public static String login_url = "/admin/login?";//登录接口 post 参数name手机号，password密码
     public static String isLogin_url = "/admin/isLogin";//  判断是否登录接口：返回 code 说明： 0、已登录 -1、您还没有登录！
     public static String apply_all_status = "/mobileapi/convergeApply/findPage.do?";//msgStatus=   申请》 0=审批中，1=被驳回，2=已审批，3=已撤销
     public static String approval_status = "/mobileapi/convergeApproval/findPage.do?";// msgStatus=：消息状态, 0=待审批，1=已审批
@@ -52,7 +52,7 @@ public class URLTools {
     public static String residential_list = "/mobileapi/shop/findPage.do?";//商铺下的小区列表buildingId=10&state=40(不需要status这个参数)
     public static String shops_message = "/mobileapi/shop/get.do?";//商铺详情id=97
 
-    public static String sign_sell = "/mobileapi/shop/save.do?";//标记为已售id=1&state=50&stateText=%E5%B7%B2%E5%94%AE
+    public static String sign_sell = "/mobileapi/shop/save.do?";//商铺标记为已售id=1&state=50&stateText=%E5%B7%B2%E5%94%AE
 
     public static String notice_mess = "/mobileapi/message/save.do?";//发布公告title&content&msgStatus
     public static String notice_list = "/mobileapi/message/findPage.do?"; //消息》分页查询消息列表接口
@@ -65,10 +65,22 @@ public class URLTools {
     public static String select_history_lease = "/mobileapi/shopLog/findList.do?";//  查询出租历史记录接口shopId=1
 
     public static String expire_remind = "/mobileapi/shop/findRemaining.do?";//到期提醒列表
+    public static String sure_money="/mobileapi/shop/save.do?";//确认交租接口id=1&lastBeginDate=2019-05-09&lastEndDate=2020-05-09&lastPaidIn=1234
 
     public static String floor_address_list="/mobileapi/building/findList.do?";//楼盘地址列表
     public static String floor_num_list="/mobileapi/house/findHouse.do?";//楼号列表buildingId=1
     public static String floor_unit_list="/mobileapi/house/findUnit.do?";//单元列表buildingId=1&houseNum=1
     public static String floor_all_house="/mobileapi/house/findList.do?";//单元中所有的房屋buildingId=1&houseNum=1&uint=1
+    public static String floor_house_information="/mobileapi/house/get.do?";//户型图
+
+    public static String house_sign_sell = "/mobileapi/house/save.do?";//房屋标记为已售id=1&state=50&stateText=%E5%B7%B2%E5%94%AE
+
+    public static String customer_list="/mobileapi/customer/findPage.do?";//客户列表加字段name为搜索接口
+    public static String customer_add="/mobileapi/customer/save.do?";//添加客户(也是标记为星级客户接口，需要id,star=0,非星级，1星级)
+    public static String customer_message="/mobileapi/customer/get.do?";//客户详情id="";
+    public static String customer_delete="/mobileapi/customer/delete.do?";//删除客户id="";
+
+    public static String agent_cpmpany_list="/mobileapi/company/findPage.do?";//代理公司接口
+    public static String agent_cpmpany_information_list="/mobileapi/company/get.do?";//代理公司详情接口id=""
 
 }

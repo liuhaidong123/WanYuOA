@@ -187,7 +187,7 @@ public class ExpireRemindMessageActivity extends AppCompatActivity {
                         SuccessBean successBean = (SuccessBean) o;
                         if (successBean != null) {
                             if ("0".equals(successBean.getCode())) {
-                                Toast.makeText(ExpireRemindMessageActivity.this, "闲置成功", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ExpireRemindMessageActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
                                 setResult(RESULT_OK, getIntent());
                                 finish();
 
@@ -273,8 +273,9 @@ public class ExpireRemindMessageActivity extends AppCompatActivity {
             }
         });
         okHttpManager = OkHttpManager.getInstance();
+        sure_url=URLTools.urlBase + URLTools.sure_money;//确认交租接口
         id = getIntent().getLongExtra("id", -1);
-        url = URLTools.urlBase + URLTools.shops_message + "id=" + id;
+        url = URLTools.urlBase + URLTools.shops_message + "id=" + id;//详情接口
         if (id != -1) {
             okHttpManager.getMethod(false, url, "商铺详情", handler, 1);
         } else {
@@ -295,7 +296,7 @@ public class ExpireRemindMessageActivity extends AppCompatActivity {
             }
         });
         no_mess_tv = (TextView) findViewById(R.id.no_mess_tv);
-        mAll = (RelativeLayout) findViewById(R.id.activity_already_lease);
+        mAll = (RelativeLayout) findViewById(R.id.activity_expire_remind_message);
 
         mback_img = (ImageView) findViewById(R.id.back_img);
         mback_img.setOnClickListener(new View.OnClickListener() {
@@ -330,6 +331,8 @@ public class ExpireRemindMessageActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //提交确认交租接口
                 if (checkTime()){
+                    BallProgressUtils.showLoading(ExpireRemindMessageActivity.this,mAll);
+                    okHttpManager.getMethod(false, sure_url+"id="+id+"&lastBeginDate="+sure_start_time.getText().toString().trim()+"&lastEndDate="+sure_end_time.getText().toString().trim()+"&lastPaidIn="+sure_money.getText().toString().trim(), "提交确认交租接口", handler, 2);
                     myAlertDialog.dismiss();
                 }
 

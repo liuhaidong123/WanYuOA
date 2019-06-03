@@ -251,7 +251,14 @@
         <activity android:name=".activity.leaseManage.ExpireRemindMessageActivity" />
         <activity android:name=".activity.floorManage.FloorManageActivity" />
         <activity android:name=".activity.floorManage.FloorMessageActivity" />
-        <activity android:name=".activity.floorManage.FloorHouseInformationActivity"></activity>
+        <activity android:name=".activity.floorManage.FloorHouseInformationActivity" />
+        <activity android:name=".activity.Customer.CustomerActivity" />
+        <activity android:name=".activity.Customer.CustomerAddActivity" />
+        <activity
+            android:name=".activity.Customer.CustomerMessageActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".activity.AgentCompany.AgentCompanyActivity" />
+        <activity android:name=".activity.AgentCompany.AgentCompanyInformationActivity"></activity>
     </application>
 
 </manifest>

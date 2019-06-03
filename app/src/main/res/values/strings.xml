@@ -37,5 +37,12 @@
         <font color="#00bfff">变色的文字</font>
      </string>
 
-
+    <string name="name">姓&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;名</string>
+    <string name="sex">性&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;别</string>
+    <string name="age">年&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;龄</string>
+    <string name="phone1">电&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;话1</string>
+    <string name="phone2">电&#160;&#160;&#160;&#160;&#160;&#160;&#160;话2</string>
+    <string name="live">居住区域</string>
+    <string name="way">认知渠道</string>
+    <string name="like">意向房源</string>
 </resources>

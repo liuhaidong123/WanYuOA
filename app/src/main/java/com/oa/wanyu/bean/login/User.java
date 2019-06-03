@@ -50,13 +50,18 @@ public class User {
 
     private long roleId;
 
-    private String addressCode;
+   // private String addressCode;
 
+    private String address;
+
+    private  int isAdmin;
+
+    private  int    volume;
     private String departmentName;
 
     private String roleName;
 
-    private String addressName;
+   // private String addressName;
 
     private List<Permission> permission;
 
@@ -232,13 +237,13 @@ public class User {
         this.roleId = roleId;
     }
 
-    public String getAddressCode() {
-        return addressCode;
-    }
+//    public String getAddressCode() {
+//        return addressCode;
+//    }
 
-    public void setAddressCode(String addressCode) {
-        this.addressCode = addressCode;
-    }
+//    public void setAddressCode(String addressCode) {
+//        this.addressCode = addressCode;
+//    }
 
     public String getDepartmentName() {
         return departmentName;
@@ -256,13 +261,13 @@ public class User {
         this.roleName = roleName;
     }
 
-    public String getAddressName() {
-        return addressName;
-    }
+//    public String getAddressName() {
+//        return addressName;
+//    }
 
-    public void setAddressName(String addressName) {
-        this.addressName = addressName;
-    }
+//    public void setAddressName(String addressName) {
+//        this.addressName = addressName;
+//    }
 
     public List<Permission> getPermission() {
         return permission;
@@ -286,5 +291,29 @@ public class User {
 
     public void setUpdateTimeString(String updateTimeString) {
         this.updateTimeString = updateTimeString;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(int isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
     }
 }

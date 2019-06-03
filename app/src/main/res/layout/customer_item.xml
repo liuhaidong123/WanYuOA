@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/one_rl"
+        android:layout_width="match_parent"
+        android:layout_height="54dp">
+
+        <com.oa.wanyu.myutils.CircleImg
+            android:id="@+id/customer_head"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/head_img_icon" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/customer_head">
+
+            <TextView
+                android:id="@+id/customer_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Mr.Li"
+                android:textColor="@color/color_090a0f"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/customer_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/customer_name"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:maxLength="20"
+                android:text="电话: 18811101110"
+                android:textColor="@color/color_b9b9b9"
+                android:textSize="10sp" />
+
+
+            <TextView
+                android:id="@+id/customer_house"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/customer_name"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@+id/customer_phone"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="意向房源：翡翠华府"
+                android:textColor="@color/color_b9b9b9"
+                android:textSize="10sp" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/xing"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/caise" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

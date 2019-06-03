@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_agent_company_information"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    tools:context="com.oa.wanyu.activity.AgentCompany.AgentCompanyInformationActivity">
+
+    <RelativeLayout
+        android:id="@+id/title_rl"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@mipmap/agentbg">
+
+        <TextView
+            android:id="@+id/agent_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:text="名流地产"
+            android:textColor="@color/color_ffffff"
+            android:textSize="16sp" />
+
+        <com.oa.wanyu.myutils.CircleImg
+            android:id="@+id/agent_img"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_below="@+id/agent_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:src="@mipmap/agent" />
+
+        <TextView
+            android:id="@+id/agent_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:padding="5dp"
+            android:text="添加"
+            android:textColor="@color/color_3dacfe"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/agent_information"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/agent_img"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:scrollbars="vertical"
+            android:singleLine="false"
+            android:text="涿州市远方名流房地产开发有限公司于2006-05-17在当地工商机关登记成立，位于河北保定涿州范阳中路374号，这里人杰地灵，交通便捷!
+涿州市远方名流房地产开发有限公司是一家重发展、重质量的企业。一直以稳定可靠的产品质量和良好的经营信誉，取得了广大客户的信任，紧随市场发展趋势，不断地开发新产品，以满足广大客户最新需求。所有的产品均已于通过内部质量标准。竭诚欢迎广大的新、老客户来电洽谈合作!"
+            android:textColor="@color/color_000000"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/smart_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title_rl"
+        android:layout_marginTop="10dp"
+        android:background="@color/color_ffffff">
+
+        <ListView
+            android:id="@+id/listview_agent_person"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/color_ffffff"
+            android:dividerHeight="8dp"
+            android:scrollbars="none">
+
+        </ListView>
+
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/no_data_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title_rl"
+        android:background="@color/color_ffffff"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/no_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_data" />
+
+        <TextView
+            android:id="@+id/no_mess_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/no_img"
+            android:layout_centerHorizontal="true"
+            android:text="暂无销售人员"
+            android:textColor="@color/color_0e3247"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

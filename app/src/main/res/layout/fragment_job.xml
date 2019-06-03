@@ -16,6 +16,7 @@
         android:textSize="16sp" />
 
     <View
+        android:visibility="invisible"
         android:id="@+id/job_line"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
@@ -31,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!--通用-->
+            <!--通用8888888888888888888-->
             <TextView
                 android:id="@+id/tong_tv"
                 android:layout_width="match_parent"
@@ -215,7 +216,10 @@
                 android:layout_below="@+id/liner_one"
                 android:background="@color/color_ededed" />
 
-            <!--楼房销售-->
+            <!--通用888888888888888888888-->
+
+
+            <!--楼房销售===========================================-->
 
             <TextView
                 android:id="@+id/lou_tv"
@@ -358,9 +362,9 @@
                     android:layout_height="match_parent"
                     android:background="@color/color_ededed" />
 
-                <!--出售管理-->
+                <!--销售统计-->
                 <LinearLayout
-                    android:id="@+id/chushou_ll"
+                    android:id="@+id/xiaoshou_tongji_ll"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -378,13 +382,13 @@
                             android:id="@+id/chushou_img"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/job_chushou_icon" />
+                            android:src="@mipmap/job_tongji_icon" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7dp"
-                            android:text="@string/cs_tv"
+                            android:text="销售统计"
                             android:textColor="@color/color_000000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -400,180 +404,16 @@
                 android:layout_height="0.5dp"
                 android:layout_below="@+id/liner112_one"
                 android:background="@color/color_ededed" />
-
-            <LinearLayout
-                android:id="@+id/liner_two213"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_below="@+id/job_line601"
-                android:orientation="horizontal">
-
-                <!--交房记录-->
-                <LinearLayout
-                    android:id="@+id/jiaofang_ll"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/jiaofang_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/job_jiaofang_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:text="@string/jf_tv"
-                            android:textColor="@color/color_000000"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/job_line205"
-                    android:layout_width="0.5dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/color_ededed" />
-
-                <!--销售人员-->
-                <LinearLayout
-                    android:id="@+id/xiaoshou_ll"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/xiaoshou_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/job_renyuan_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:text="@string/xs_tv"
-                            android:textColor="@color/color_000000"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/kong1_line409"
-                    android:layout_width="0.5dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/color_ededed" />
-
-                <!--回访管理-->
-                <LinearLayout
-                    android:id="@+id/huifang_ll"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/huifang_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/job_huifang_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:text="@string/hf_tv"
-                            android:textColor="@color/color_000000"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/job_line504"
-                    android:layout_width="0.5dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/color_ededed" />
-
-                <!--销售统计-->
-                <LinearLayout
-                    android:id="@+id/tongji_ll"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/tongji_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/job_tongji_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:text="@string/tj_tv"
-                            android:textColor="@color/color_000000"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
+            <!--楼房销售===========================================-->
 
 
-            </LinearLayout>
 
-            <View
-                android:id="@+id/job_line11"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_below="@+id/liner_two213"
-                android:background="@color/color_ededed" />
-
-            <!--招商出租-->
+            <!--招商出租=======-->
             <TextView
                 android:id="@+id/zhaoshang_tv"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_below="@+id/job_line11"
+                android:layout_below="@+id/job_line601"
                 android:gravity="center_vertical"
                 android:paddingLeft="15dp"
                 android:text="@string/zs"
@@ -632,9 +472,9 @@
                     android:layout_height="match_parent"
                     android:background="@color/color_ededed" />
 
-                <!--客户管理-->
+                <!--出租统计-->
                 <LinearLayout
-                    android:id="@+id/shangpu_kehu_ll"
+                    android:id="@+id/chu_zu_ll"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -652,13 +492,13 @@
                             android:id="@+id/s_kh_img"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/job_kehu_manager_icon" />
+                            android:src="@mipmap/job_chuzu_tongji_icon" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7dp"
-                            android:text="@string/kh_tv"
+                            android:text="出租统计"
                             android:textColor="@color/color_000000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -752,517 +592,7 @@
                 android:layout_height="0.5dp"
                 android:layout_below="@+id/liner342_one"
                 android:background="@color/color_ededed" />
-
-            <LinearLayout
-                android:id="@+id/liner_two233"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_below="@+id/job_line661"
-                android:orientation="horizontal">
-
-                <!--回访管理-->
-                <LinearLayout
-                    android:id="@+id/zhangshang_huifang_ll"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/s_huifang_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/job_huifang_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:text="回访管理"
-                            android:textColor="@color/color_000000"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/job_line295"
-                    android:layout_width="0.5dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/color_ededed" />
-
-                <!--出租统计-->
-                <LinearLayout
-                    android:id="@+id/chuzu_tongji_ll"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/chuzu_tongji_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/job_chuzu_tongji_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:text="出租统计"
-                            android:textColor="@color/color_000000"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/kong1_line459"
-                    android:layout_width="0.5dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/color_ededed" />
-
-                <!--kong-->
-                <LinearLayout
-                    android:id="@+id/kong_123_ll"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/kong_123_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:textColor="@color/color_000000"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/job_line574"
-                    android:layout_width="0.5dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/color_ededed"
-                    android:visibility="invisible" />
-
-                <!--kong-->
-                <LinearLayout
-                    android:id="@+id/kong_134_ll"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/kong_134_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:textColor="@color/color_000000"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <!--物业管理-->
-
-            <View
-                android:id="@+id/job_line109"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_below="@+id/liner_two233"
-                android:background="@color/color_ededed" />
-
-            <TextView
-                android:id="@+id/wuye_tv"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_below="@+id/job_line109"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp"
-                android:text=""
-                android:textColor="@color/color_9c9c9c"
-                android:textSize="12sp" />
-
-            <View
-                android:id="@+id/job_line2567"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_below="@+id/wuye_tv"
-                android:background="@color/color_ededed" />
-
-            <LinearLayout
-                android:id="@+id/liner3432_one"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_below="@+id/job_line2567"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <!--报事报修-->
-                <LinearLayout
-                    android:id="@+id/baoxiu_ll"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/baoxiu_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/job_baoxiu_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:text="报事报修"
-                            android:textColor="@color/color_000000"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/job_line3421"
-                    android:layout_width="0.5dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/color_ededed" />
-
-                <!--车位管理-->
-                <LinearLayout
-                    android:id="@+id/chewei_ll"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/chewei_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/job_chewei_manager_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:text="车位管理"
-                            android:textColor="@color/color_000000"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/job_line4351"
-                    android:layout_width="0.5dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/color_ededed" />
-
-                <!--装修管理-->
-                <LinearLayout
-                    android:id="@+id/zhuangxiu_ll"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/zhuangxiu_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/job_zhuangxiu_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:text="装修管理"
-                            android:textColor="@color/color_000000"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/job_line5039"
-                    android:layout_width="0.5dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/color_ededed" />
-
-                <!--投诉建议-->
-                <LinearLayout
-                    android:id="@+id/tousu_ll"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/tousu_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/job_tousu_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:text="投诉建议"
-                            android:textColor="@color/color_000000"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <View
-                android:id="@+id/job_line6361"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_below="@+id/liner3432_one"
-                android:background="@color/color_ededed"
-                android:visibility="gone" />
-
-            <LinearLayout
-                android:id="@+id/liner_two2223"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_below="@+id/job_line6361"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <!--设备管理-->
-                <LinearLayout
-                    android:id="@+id/shebei_ll"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/shebei_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/job_shebei_manager_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:text="设备管理"
-                            android:textColor="@color/color_000000"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/job_line2925"
-                    android:layout_width="0.5dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/color_ededed" />
-
-                <!--安保管理-->
-                <LinearLayout
-                    android:id="@+id/anbao_ll"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/anbao_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/job_anbao_manager_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:text="安保管理"
-                            android:textColor="@color/color_000000"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/kong11_line459"
-                    android:layout_width="0.5dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/color_ededed" />
-
-                <!--kong-->
-                <LinearLayout
-                    android:id="@+id/kong_1213_ll"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/kong_1213_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:textColor="@color/color_000000"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/job_line5714"
-                    android:layout_width="0.5dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/color_ededed"
-                    android:visibility="invisible" />
-
-                <!--kong-->
-                <LinearLayout
-                    android:id="@+id/kong_1341_ll"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/kong_1134_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:textColor="@color/color_000000"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
+            <!--招商出租========-->
 
         </RelativeLayout>
     </ScrollView>

@@ -189,6 +189,17 @@ public class ExpireRemindctivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode==40&&resultCode==RESULT_OK){
+            refresh = 0;
+            start = 0;
+            url = URLTools.urlBase + URLTools.expire_remind + "start=" + start + "&limit=" + limit;
+            okHttpManager.getMethod(false, url, "到期提醒接口", handler, 1);
+        }
+    }
 
     class ExpireRemindAdapter extends BaseAdapter {
 

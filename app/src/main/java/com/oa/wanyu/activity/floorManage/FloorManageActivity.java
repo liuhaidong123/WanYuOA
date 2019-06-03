@@ -21,6 +21,7 @@ import com.google.gson.Gson;
 import com.oa.wanyu.OkHttpUtils.OkHttpManager;
 import com.oa.wanyu.OkHttpUtils.URLTools;
 import com.oa.wanyu.R;
+import com.oa.wanyu.activity.leaseManage.AlreadyLeaseActivity;
 import com.oa.wanyu.activity.reimbursementActivity.ReimbursementActivity;
 import com.oa.wanyu.bean.FloorAddressRoot;
 import com.oa.wanyu.bean.FloorAddressRows;
@@ -49,8 +50,8 @@ public class FloorManageActivity extends AppCompatActivity {
     private List<FloorNumRows> floorList = new ArrayList();
     private List<FloorUnitRows> unitList = new ArrayList();
     private long buildingID = -1;//小区ID
-    private String houseNum="";//楼号
-    private String unit="";//单元
+    private String houseNum = "";//楼号
+    private String unit = "";//单元
 
     private String url, numUrl, unitUrl;//小区，楼号，单元接口
     private OkHttpManager okHttpManager;
@@ -61,90 +62,104 @@ public class FloorManageActivity extends AppCompatActivity {
             super.handleMessage(msg);
             BallProgressUtils.dismisLoading();
             if (msg.what == 1) {//小区接口
-                String str = (String) msg.obj;
-                Object o = gson.fromJson(str, FloorAddressRoot.class);
-                if (o != null && o instanceof FloorAddressRoot) {
-                    FloorAddressRoot floorAddressRoot = (FloorAddressRoot) o;
-                    if (floorAddressRoot != null) {
-                        if ("0".equals(floorAddressRoot.getCode())) {
+                try {
 
-                            if (floorAddressRoot.getRows() != null) {
+                    String str = (String) msg.obj;
+                    Object o = gson.fromJson(str, FloorAddressRoot.class);
+                    if (o != null && o instanceof FloorAddressRoot) {
+                        FloorAddressRoot floorAddressRoot = (FloorAddressRoot) o;
+                        if (floorAddressRoot != null) {
+                            if ("0".equals(floorAddressRoot.getCode())) {
 
-                                if (floorAddressRoot.getRows().size() == 0) {
-                                    Toast.makeText(FloorManageActivity.this, "暂未获取小区列表", Toast.LENGTH_SHORT).show();
+                                if (floorAddressRoot.getRows() != null) {
+
+                                    if (floorAddressRoot.getRows().size() == 0) {
+                                        Toast.makeText(FloorManageActivity.this, "暂未获取小区列表", Toast.LENGTH_SHORT).show();
+                                    }
+                                    addressList = floorAddressRoot.getRows();
+                                    addressAdapter.notifyDataSetChanged();
+
                                 }
-                                addressList = floorAddressRoot.getRows();
-                                addressAdapter.notifyDataSetChanged();
+
+
+                            } else if ("-1".equals(floorAddressRoot.getCode())) {
+                                Toast.makeText(FloorManageActivity.this, "登录过期，请重新登录", Toast.LENGTH_SHORT).show();
 
                             }
-
-
-                        } else if ("-1".equals(floorAddressRoot.getCode())) {
-                            Toast.makeText(FloorManageActivity.this, "登录过期，请重新登录", Toast.LENGTH_SHORT).show();
-
                         }
+
+
+                    } else {
+                        Toast.makeText(FloorManageActivity.this, "获取小区列表失败", Toast.LENGTH_SHORT).show();
                     }
-
-
-                } else {
-                    Toast.makeText(FloorManageActivity.this, "获取小区列表失败", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(FloorManageActivity.this, "数据解析错误,请重新尝试", Toast.LENGTH_SHORT).show();
                 }
+
             } else if (msg.what == 2) {//楼号
-                String str = (String) msg.obj;
-                Object o = gson.fromJson(str, FloorNumRoot.class);
-                if (o != null && o instanceof FloorNumRoot) {
-                    FloorNumRoot floorNumRoot = (FloorNumRoot) o;
-                    if (floorNumRoot != null) {
-                        if ("0".equals(floorNumRoot.getCode())) {
+                try {
+                    String str = (String) msg.obj;
+                    Object o = gson.fromJson(str, FloorNumRoot.class);
+                    if (o != null && o instanceof FloorNumRoot) {
+                        FloorNumRoot floorNumRoot = (FloorNumRoot) o;
+                        if (floorNumRoot != null) {
+                            if ("0".equals(floorNumRoot.getCode())) {
 
-                            if (floorNumRoot.getRows() != null) {
+                                if (floorNumRoot.getRows() != null) {
 
-                                if (floorNumRoot.getRows().size() == 0) {
-                                    Toast.makeText(FloorManageActivity.this, "暂未获取楼号信息", Toast.LENGTH_SHORT).show();
+                                    if (floorNumRoot.getRows().size() == 0) {
+                                        Toast.makeText(FloorManageActivity.this, "暂未获取楼号信息", Toast.LENGTH_SHORT).show();
+                                    }
+                                    floorList = floorNumRoot.getRows();
+                                    floorAdapter.notifyDataSetChanged();
+
                                 }
-                                floorList = floorNumRoot.getRows();
-                                floorAdapter.notifyDataSetChanged();
+
+
+                            } else if ("-1".equals(floorNumRoot.getCode())) {
+                                Toast.makeText(FloorManageActivity.this, "登录过期，请重新登录", Toast.LENGTH_SHORT).show();
 
                             }
-
-
-                        } else if ("-1".equals(floorNumRoot.getCode())) {
-                            Toast.makeText(FloorManageActivity.this, "登录过期，请重新登录", Toast.LENGTH_SHORT).show();
-
                         }
+
+
+                    } else {
+                        Toast.makeText(FloorManageActivity.this, "获取楼号信息失败", Toast.LENGTH_SHORT).show();
                     }
-
-
-                } else {
-                    Toast.makeText(FloorManageActivity.this, "获取楼号信息失败", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(FloorManageActivity.this, "数据解析错误,请重新尝试", Toast.LENGTH_SHORT).show();
                 }
-            }else if (msg.what == 3){
 
-                String str = (String) msg.obj;
-                Object o = gson.fromJson(str, FloorUnitRoot.class);
-                if (o != null && o instanceof FloorUnitRoot) {
-                    FloorUnitRoot floorUnitRoot = (FloorUnitRoot) o;
-                    if (floorUnitRoot != null) {
-                        if ("0".equals(floorUnitRoot.getCode())) {
+            } else if (msg.what == 3) {
+                try {
+                    String str = (String) msg.obj;
+                    Object o = gson.fromJson(str, FloorUnitRoot.class);
+                    if (o != null && o instanceof FloorUnitRoot) {
+                        FloorUnitRoot floorUnitRoot = (FloorUnitRoot) o;
+                        if (floorUnitRoot != null) {
+                            if ("0".equals(floorUnitRoot.getCode())) {
 
-                            if (floorUnitRoot.getRows() != null) {
+                                if (floorUnitRoot.getRows() != null) {
 
-                                if (floorUnitRoot.getRows().size() == 0) {
-                                    Toast.makeText(FloorManageActivity.this, "暂未获取单元信息", Toast.LENGTH_SHORT).show();
+                                    if (floorUnitRoot.getRows().size() == 0) {
+                                        Toast.makeText(FloorManageActivity.this, "暂未获取单元信息", Toast.LENGTH_SHORT).show();
+                                    }
+                                    unitList = floorUnitRoot.getRows();
+                                    unitAdapter.notifyDataSetChanged();
                                 }
-                                unitList = floorUnitRoot.getRows();
-                                unitAdapter.notifyDataSetChanged();
+
+                            } else if ("-1".equals(floorUnitRoot.getCode())) {
+                                Toast.makeText(FloorManageActivity.this, "登录过期，请重新登录", Toast.LENGTH_SHORT).show();
+
                             }
-
-                        } else if ("-1".equals(floorUnitRoot.getCode())) {
-                            Toast.makeText(FloorManageActivity.this, "登录过期，请重新登录", Toast.LENGTH_SHORT).show();
-
                         }
+
+
+                    } else {
+                        Toast.makeText(FloorManageActivity.this, "获取单元信息失败", Toast.LENGTH_SHORT).show();
                     }
-
-
-                } else {
-                    Toast.makeText(FloorManageActivity.this, "获取单元信息失败", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(FloorManageActivity.this, "数据解析错误,请重新尝试", Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -162,7 +177,7 @@ public class FloorManageActivity extends AppCompatActivity {
         okHttpManager.getMethod(false, url, "地址接口", handler, 1);
 
         numUrl = URLTools.urlBase + URLTools.floor_num_list;  //楼号接口
-        unitUrl= URLTools.urlBase + URLTools.floor_unit_list;//单元列表接口
+        unitUrl = URLTools.urlBase + URLTools.floor_unit_list;//单元列表接口
     }
 
     private void initUI() {
@@ -216,7 +231,7 @@ public class FloorManageActivity extends AppCompatActivity {
                 if (!"".equals(houseNum)) {
                     if (unitList.size() == 0) {
                         BallProgressUtils.showLoading(FloorManageActivity.this, mAll);
-                        okHttpManager.getMethod(false, unitUrl + "buildingId=" + buildingID+"&houseNum="+houseNum, "单元列表接口", handler, 3);
+                        okHttpManager.getMethod(false, unitUrl + "buildingId=" + buildingID + "&houseNum=" + houseNum, "单元列表接口", handler, 3);
                         Toast.makeText(FloorManageActivity.this, "正在查询数据，请稍等。。。", Toast.LENGTH_SHORT).show();
                     } else {
                         unit_alertDialog.show();
@@ -232,16 +247,16 @@ public class FloorManageActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                    if (buildingID!=-1&&!"".equals(houseNum)&&!"".equals(unit)){
-                        Intent intent = new Intent(FloorManageActivity.this, FloorMessageActivity.class);
-                        intent.putExtra("building",buildingID);
-                        intent.putExtra("address",mAddress_tv.getText().toString());
-                        intent.putExtra("house",houseNum);
-                        intent.putExtra("unit",unit);
-                        startActivity(intent);
-                    }else {
-                        Toast.makeText(FloorManageActivity.this, "请先选择楼号", Toast.LENGTH_SHORT).show();
-                    }
+                if (buildingID != -1 && !"".equals(houseNum) && !"".equals(unit)) {
+                    Intent intent = new Intent(FloorManageActivity.this, FloorMessageActivity.class);
+                    intent.putExtra("building", buildingID);
+                    intent.putExtra("address", mAddress_tv.getText().toString());
+                    intent.putExtra("house", houseNum);
+                    intent.putExtra("unit", unit);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(FloorManageActivity.this, "请先选择楼号", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -276,9 +291,9 @@ public class FloorManageActivity extends AppCompatActivity {
         mFloorListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                mFloor_tv.setText(floorList.get(i).getHouseNum()+"号楼");
+                mFloor_tv.setText(floorList.get(i).getHouseNum() + "号楼");
                 houseNum = floorList.get(i).getHouseNum();
-                okHttpManager.getMethod(false, unitUrl + "buildingId=" + buildingID+"&houseNum="+houseNum, "单元列表接口", handler, 3);
+                okHttpManager.getMethod(false, unitUrl + "buildingId=" + buildingID + "&houseNum=" + houseNum, "单元列表接口", handler, 3);
                 floor_alertDialog.dismiss();
             }
         });
@@ -293,7 +308,7 @@ public class FloorManageActivity extends AppCompatActivity {
         mUnitListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                mUnit_tv.setText(unitList.get(i).getUint()+"单元");
+                mUnit_tv.setText(unitList.get(i).getUint() + "单元");
                 unit = unitList.get(i).getUint();
                 unit_alertDialog.dismiss();
             }
@@ -365,7 +380,7 @@ public class FloorManageActivity extends AppCompatActivity {
                 floorHolder = (FloorHolder) view.getTag();
             }
 
-            floorHolder.tv.setText(floorList.get(i).getHouseNum()+"号楼");
+            floorHolder.tv.setText(floorList.get(i).getHouseNum() + "号楼");
             return view;
         }
 
@@ -401,7 +416,7 @@ public class FloorManageActivity extends AppCompatActivity {
             } else {
                 unitHolder = (UnitHolder) view.getTag();
             }
-            unitHolder.tv.setText(unitList.get(i).getUint()+"单元");
+            unitHolder.tv.setText(unitList.get(i).getUint() + "单元");
 
             return view;
         }

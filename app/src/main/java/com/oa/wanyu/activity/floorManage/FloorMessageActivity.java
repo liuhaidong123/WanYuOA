@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 import com.oa.wanyu.OkHttpUtils.OkHttpManager;
 import com.oa.wanyu.OkHttpUtils.URLTools;
 import com.oa.wanyu.R;
+import com.oa.wanyu.activity.leaseManage.AlreadyLeaseActivity;
 import com.oa.wanyu.bean.FloorAddressNumUnitRoot;
 import com.oa.wanyu.bean.FloorAddressNumUnitRows;
 import com.oa.wanyu.bean.FloorAddressRoot;
@@ -61,35 +62,40 @@ public class FloorMessageActivity extends AppCompatActivity {
             super.handleMessage(msg);
             BallProgressUtils.dismisLoading();
             if (msg.what == 1) {//小区接口
-                String str = (String) msg.obj;
-                Object o = gson.fromJson(str, FloorAddressNumUnitRoot.class);
-                if (o != null && o instanceof FloorAddressNumUnitRoot) {
-                    FloorAddressNumUnitRoot floorAddressNumUnitRoot = (FloorAddressNumUnitRoot) o;
-                    if (floorAddressNumUnitRoot != null) {
-                        if ("0".equals(floorAddressNumUnitRoot.getCode())) {
+                try {
+                    String str = (String) msg.obj;
+                    Object o = gson.fromJson(str, FloorAddressNumUnitRoot.class);
+                    if (o != null && o instanceof FloorAddressNumUnitRoot) {
+                        FloorAddressNumUnitRoot floorAddressNumUnitRoot = (FloorAddressNumUnitRoot) o;
+                        if (floorAddressNumUnitRoot != null) {
+                            if ("0".equals(floorAddressNumUnitRoot.getCode())) {
 
-                            if (floorAddressNumUnitRoot.getRows() != null) {
+                                if (floorAddressNumUnitRoot.getRows() != null) {
 
-                                if (floorAddressNumUnitRoot.getRows().size() == 0) {
-                                    Toast.makeText(FloorMessageActivity.this, "暂未获取所有楼房信息", Toast.LENGTH_SHORT).show();
+                                    if (floorAddressNumUnitRoot.getRows().size() == 0) {
+                                        Toast.makeText(FloorMessageActivity.this, "暂未获取所有楼房信息", Toast.LENGTH_SHORT).show();
+                                    }
+                                    mList = floorAddressNumUnitRoot.getRows();
+                                    Collections.reverse(mList);
+                                    myAdapter.notifyDataSetChanged();
+
                                 }
-                                mList = floorAddressNumUnitRoot.getRows();
-                                Collections.reverse(mList);
-                                myAdapter.notifyDataSetChanged();
+
+
+                            } else if ("-1".equals(floorAddressNumUnitRoot.getCode())) {
+                                Toast.makeText(FloorMessageActivity.this, "登录过期，请重新登录", Toast.LENGTH_SHORT).show();
 
                             }
-
-
-                        } else if ("-1".equals(floorAddressNumUnitRoot.getCode())) {
-                            Toast.makeText(FloorMessageActivity.this, "登录过期，请重新登录", Toast.LENGTH_SHORT).show();
-
                         }
+
+
+                    } else {
+                        Toast.makeText(FloorMessageActivity.this, "获取楼房信息失败", Toast.LENGTH_SHORT).show();
                     }
-
-
-                } else {
-                    Toast.makeText(FloorMessageActivity.this, "获取楼房信息失败", Toast.LENGTH_SHORT).show();
+                }catch (Exception e){
+                    Toast.makeText(FloorMessageActivity.this, "数据解析错误,请重新尝试", Toast.LENGTH_SHORT).show();
                 }
+
             } else {
                 Toast.makeText(FloorMessageActivity.this, "连接服务器失败，请重新尝试", Toast.LENGTH_SHORT).show();
             }
@@ -117,8 +123,19 @@ public class FloorMessageActivity extends AppCompatActivity {
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(FloorMessageActivity.this, FloorHouseInformationActivity.class);
-                startActivity(intent);
+                if (mList.get(i).getState()!=0){
+                    Intent intent = new Intent(FloorMessageActivity.this, FloorHouseInformationActivity.class);
+                    intent.putExtra("id",mList.get(i).getId());
+                    intent.putExtra("state",mList.get(i).getState());
+//                intent.putExtra("address",address);
+//                intent.putExtra("house",houseNum);
+//                intent.putExtra("unit",unit);
+//                intent.putExtra("roomNum",mList.get(i).getRoomNum());
+                    startActivityForResult(intent,1);
+                }else {
+                    Toast.makeText(FloorMessageActivity.this, "此房屋不存在,请选择其他房屋", Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
 
@@ -141,7 +158,14 @@ public class FloorMessageActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==1&&resultCode==RESULT_OK){
+            BallProgressUtils.showLoading(this, mAll);
+            okHttpManager.getMethod(false, url + "buildingId=" + buildingID + "&houseNum=" + houseNum + "&uint=" + unit, "所有单元接口", handler, 1);
+        }
+    }
 
     class MyAdapter extends BaseAdapter {
 
@@ -184,7 +208,7 @@ public class FloorMessageActivity extends AppCompatActivity {
             } else if (mList.get(i).getState() == 50) {//已售
                 myHolder.tv.setBackgroundResource(R.color.color_8bc34a);
             } else if (mList.get(i).getState() == 45) {//预定
-                myHolder.tv.setBackgroundResource(R.color.color_ff594d);
+                myHolder.tv.setBackgroundResource(R.color.color_fda570);
             }
 
             return view;
