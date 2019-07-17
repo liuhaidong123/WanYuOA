@@ -7,6 +7,7 @@ import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,7 @@ import java.util.List;
 //出差详情
 public class AbusinessTravelMessageActivity extends AppCompatActivity {
 
-    private ImageView mback,show_img;
+    private ImageView mback, show_img;
     private ListView listView;
     private List<AbusinessTravelInformationItems> mList = new ArrayList<>();
     private View footer;
@@ -45,7 +46,9 @@ public class AbusinessTravelMessageActivity extends AppCompatActivity {
     private LinearLayout agree_disagree_ll;
     private TextView agree_btn, disagree_btn, withdraw_btn;//同意，驳回，撤回
     private Intent intent;
-    long referId;
+    private String departmentName = "", personName = "";
+    private long referId;
+    private int withdraw = -1;//判断是否显示撤回按钮
     private RelativeLayout mAll_RL, no_data_rl;
     private TextView no_mess_tv;
     private AlertDialog.Builder builder_withdraw, builder_agree, builder_disagree;
@@ -59,6 +62,7 @@ public class AbusinessTravelMessageActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             BallProgressUtils.dismisLoading();
+            no_data_rl.setEnabled(true);
             if (msg.what == 1) {
                 try {
                     String s = (String) msg.obj;
@@ -70,6 +74,54 @@ public class AbusinessTravelMessageActivity extends AppCompatActivity {
                                 agree_disagree_ll.setVisibility(View.VISIBLE);
                                 if (abusinessTravelInfromationRoot.getApplyTrip() != null) {
                                     reason.setText(abusinessTravelInfromationRoot.getApplyTrip().getCause() + "");
+                                    departmentName = abusinessTravelInfromationRoot.getApplyTrip().getDepartmentName() + "";
+                                    personName = abusinessTravelInfromationRoot.getApplyTrip().getTrueName() + "";
+
+                                    //status=1  驳回   ；2 已同意  ；0 待审批 ；3 失效 ；withdraw=10变示不显示撤回按钮，20表示显示撤回按钮
+                                    int status = abusinessTravelInfromationRoot.getApplyTrip().getStatus();
+                                    if (status == 0) {
+                                        if (withdraw == 10) {//不显示撤回按钮
+                                            agree_disagree_ll.setVisibility(View.VISIBLE);
+                                            agree_btn.setVisibility(View.VISIBLE);
+                                            disagree_btn.setVisibility(View.VISIBLE);
+                                            withdraw_btn.setVisibility(View.GONE);
+                                        } else if (withdraw == 20) {//显示撤回按钮
+                                            agree_disagree_ll.setVisibility(View.VISIBLE);
+                                            agree_btn.setVisibility(View.GONE);
+                                            disagree_btn.setVisibility(View.GONE);
+                                            withdraw_btn.setVisibility(View.VISIBLE);
+                                        } else {//撤回
+                                            agree_disagree_ll.setVisibility(View.GONE);
+                                            agree_btn.setVisibility(View.GONE);
+                                            disagree_btn.setVisibility(View.GONE);
+                                            withdraw_btn.setVisibility(View.GONE);
+                                        }
+
+
+                                    } else if (status == 1) {
+
+                                        show_img.setVisibility(View.VISIBLE);
+                                        show_img.setImageResource(R.mipmap.b_img);
+
+                                        agree_disagree_ll.setVisibility(View.GONE);
+                                        agree_btn.setVisibility(View.GONE);
+                                        disagree_btn.setVisibility(View.GONE);
+                                        withdraw_btn.setVisibility(View.GONE);
+                                    } else if (status == 2) {
+                                        show_img.setVisibility(View.VISIBLE);
+                                        show_img.setImageResource(R.mipmap.t_img);
+                                        agree_disagree_ll.setVisibility(View.GONE);
+                                        agree_btn.setVisibility(View.GONE);
+                                        disagree_btn.setVisibility(View.GONE);
+                                        withdraw_btn.setVisibility(View.GONE);
+
+                                    } else {//失效
+                                        agree_disagree_ll.setVisibility(View.GONE);
+                                        agree_btn.setVisibility(View.GONE);
+                                        disagree_btn.setVisibility(View.GONE);
+                                        withdraw_btn.setVisibility(View.GONE);
+                                    }
+
                                     if (abusinessTravelInfromationRoot.getApplyTrip().getItems() != null) {
                                         mList = abusinessTravelInfromationRoot.getApplyTrip().getItems();
                                         travelMessAdapter.notifyDataSetChanged();
@@ -80,6 +132,12 @@ public class AbusinessTravelMessageActivity extends AppCompatActivity {
                                 Toast.makeText(AbusinessTravelMessageActivity.this, "登录过期，请重新登录", Toast.LENGTH_SHORT).show();
                                 no_data_rl.setVisibility(View.VISIBLE);
                                 no_mess_tv.setText("登录过期，请重新登录");
+                                show_img.setVisibility(View.GONE);
+                                agree_disagree_ll.setVisibility(View.GONE);
+                            } else {
+                                Toast.makeText(AbusinessTravelMessageActivity.this, "错误信息：" + abusinessTravelInfromationRoot.getMessage(), Toast.LENGTH_SHORT).show();
+                                no_data_rl.setVisibility(View.VISIBLE);
+                                no_mess_tv.setText("错误信息：" + abusinessTravelInfromationRoot.getMessage());
                                 show_img.setVisibility(View.GONE);
                                 agree_disagree_ll.setVisibility(View.GONE);
                             }
@@ -114,6 +172,9 @@ public class AbusinessTravelMessageActivity extends AppCompatActivity {
                             } else if ("-1".equals(successBean.getCode())) {
                                 Toast.makeText(AbusinessTravelMessageActivity.this, successBean.getMessage() + "", Toast.LENGTH_SHORT).show();
 
+                            } else {
+                                Toast.makeText(AbusinessTravelMessageActivity.this, successBean.getMessage() + "", Toast.LENGTH_SHORT).show();
+
                             }
                         }
                     }
@@ -133,6 +194,9 @@ public class AbusinessTravelMessageActivity extends AppCompatActivity {
                                 setResult(RESULT_OK, intent);
                                 finish();
                             } else if ("-1".equals(successBean.getCode())) {
+                                Toast.makeText(AbusinessTravelMessageActivity.this, successBean.getMessage() + "", Toast.LENGTH_SHORT).show();
+
+                            } else {
                                 Toast.makeText(AbusinessTravelMessageActivity.this, successBean.getMessage() + "", Toast.LENGTH_SHORT).show();
 
                             }
@@ -162,7 +226,7 @@ public class AbusinessTravelMessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_abusiness_travel_message);
 
-        show_img=(ImageView) findViewById(R.id.show_sign);
+        show_img = (ImageView) findViewById(R.id.show_sign);
 
         mback = (ImageView) findViewById(R.id.back_img);
         mback.setOnClickListener(new View.OnClickListener() {
@@ -185,6 +249,7 @@ public class AbusinessTravelMessageActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (referId != -1) {//请求详情
+                    no_data_rl.setEnabled(false);
                     BallProgressUtils.showLoading(AbusinessTravelMessageActivity.this, mAll_RL);
                     okHttpManager.getMethod(false, url + "id=" + referId, "请求出差详情", handler, 1);
                 } else {//传过来的详情ID错误
@@ -298,46 +363,12 @@ public class AbusinessTravelMessageActivity extends AppCompatActivity {
 
         intent = getIntent();
         referId = intent.getLongExtra("id", -1);
+        withdraw = intent.getIntExtra("withdraw_flag", -1);
+        Log.e("withdraw=",withdraw+"");
         if (referId != -1) {//请求详情
             okHttpManager.getMethod(false, url + "id=" + referId, "请求出差详情", handler, 1);
         } else {//传过来的详情ID错误
             Toast.makeText(this, "请求详情ID错误", Toast.LENGTH_SHORT).show();
-        }
-        //0表示待审批（显示同意，驳回），1表示已审批，什么都不显示，2表示申请中的审批中跳转过来的，（显示撤回按钮）
-        int flag = intent.getIntExtra("flag", -1);
-       int show_flag=intent.getIntExtra("show_flag",-1);
-        if (flag == 0) {
-            agree_disagree_ll.setVisibility(View.VISIBLE);
-            agree_btn.setVisibility(View.VISIBLE);
-            disagree_btn.setVisibility(View.VISIBLE);
-            withdraw_btn.setVisibility(View.GONE);
-        } else if (flag == 1) {
-
-            if (show_flag==100){//已完成图片
-                show_img.setVisibility(View.VISIBLE);
-                show_img.setImageResource(R.mipmap.t_img);
-            }else if (show_flag==200){//被驳回图片
-                show_img.setVisibility(View.VISIBLE);
-                show_img.setImageResource(R.mipmap.b_img);
-            }else {
-                show_img.setVisibility(View.GONE);
-            }
-
-            agree_disagree_ll.setVisibility(View.GONE);
-            agree_btn.setVisibility(View.GONE);
-            disagree_btn.setVisibility(View.GONE);
-            withdraw_btn.setVisibility(View.GONE);
-        } else if (flag == 2) {
-            //撤销时需要弹框
-            agree_disagree_ll.setVisibility(View.VISIBLE);
-            agree_btn.setVisibility(View.GONE);
-            disagree_btn.setVisibility(View.GONE);
-            withdraw_btn.setVisibility(View.VISIBLE);
-        } else {//错误
-            agree_disagree_ll.setVisibility(View.GONE);
-            agree_btn.setVisibility(View.GONE);
-            disagree_btn.setVisibility(View.GONE);
-            withdraw_btn.setVisibility(View.GONE);
         }
     }
 
@@ -370,6 +401,7 @@ public class AbusinessTravelMessageActivity extends AppCompatActivity {
                 travelholder.startTime = view.findViewById(R.id.start_time_tv);
                 travelholder.endTime = view.findViewById(R.id.end_time_tv);
                 travelholder.day = view.findViewById(R.id.day_tv);
+                travelholder.person_and_department = view.findViewById(R.id.person_and_department);
                 view.setTag(travelholder);
             } else {
                 travelholder = (Travelholder) view.getTag();
@@ -380,12 +412,12 @@ public class AbusinessTravelMessageActivity extends AppCompatActivity {
             travelholder.endTime.setText(mList.get(i).getEndDateString() + "");
             travelholder.day.setText(mList.get(i).getDuration() + "");
             travelholder.place.setText(mList.get(i).getPlace() + "");
-
+            travelholder.person_and_department.setText(departmentName + "  " + personName);
             return view;
         }
 
         class Travelholder {
-            TextView mingxi, startTime, endTime, day, place;
+            TextView mingxi, startTime, endTime, day, place, person_and_department;
 
         }
 

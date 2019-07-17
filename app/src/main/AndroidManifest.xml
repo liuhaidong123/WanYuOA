@@ -202,63 +202,161 @@
             android:value="11af1f48b0c79b94052f2571" />
 
         <activity
+            android:screenOrientation="portrait"
             android:name=".activity.MainActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".activity.login.LoginActivity" />
-        <activity android:name=".activity.startPage.StartPageActivity">
+        <activity android:name=".activity.login.LoginActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.startPage.StartPageActivity"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ApplyActivity.ApplyActivityPage" />
-        <activity android:name=".activity.aBusinessTravelActivity.AbusinessTravelActivity" />
-        <activity android:name=".activity.leave.LeaveActivity" />
-        <activity android:name=".activity.outActivity.OutActivity" />
-        <activity android:name=".activity.reimbursementActivity.ReimbursementActivity" />
-        <activity android:name=".activity.reimbursementActivity.SelectPictureActivity" />
-        <activity android:name=".activity.goodsUseActivity.GoodsUseActivity" />
-        <activity android:name=".activity.goodsBuyActivity.GoodsBuyActivity" />
-        <activity android:name=".activity.currencyApply.CurrencyApplyActivity" />
-        <activity android:name=".activity.approvalActivity.ApprovalActivity" />
-        <activity android:name=".activity.rejectActivity.RejectActivity" />
-        <activity android:name=".activity.completeActivity.CompleteActivity" />
-        <activity android:name=".activity.invalidActivity.InvalidActivity" />
-        <activity android:name=".activity.SP_Activity.SPActivity" />
-        <activity android:name=".activity.aBusinessTravelActivity.AbusinessTravelMessageActivity" />
-        <activity android:name=".activity.leave.LeaveActivityMessageActivity" />
-        <activity android:name=".activity.outActivity.OutActivityMessageActivity" />
-        <activity android:name=".activity.reimbursementActivity.ReimbursementActivityMessageActivity" />
-        <activity android:name=".activity.goodsUseActivity.GoodsUseActivityMessageActivity" />
-        <activity android:name=".activity.goodsBuyActivity.GoodsBuyActivityMessageActivity" />
-        <activity android:name=".activity.currencyApply.CurrencyApplyActivityMessageActivity" />
+        <activity android:name=".activity.ApplyActivity.ApplyActivityPage"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.aBusinessTravelActivity.AbusinessTravelActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.leave.LeaveActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.outActivity.OutActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.reimbursementActivity.ReimbursementActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.reimbursementActivity.SelectPictureActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.goodsUseActivity.GoodsUseActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.goodsBuyActivity.GoodsBuyActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.currencyApply.CurrencyApplyActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.approvalActivity.ApprovalActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.rejectActivity.RejectActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.completeActivity.CompleteActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.invalidActivity.InvalidActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.SP_Activity.SPActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.aBusinessTravelActivity.AbusinessTravelMessageActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.leave.LeaveActivityMessageActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.outActivity.OutActivityMessageActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.reimbursementActivity.ReimbursementActivityMessageActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.goodsUseActivity.GoodsUseActivityMessageActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.goodsBuyActivity.GoodsBuyActivityMessageActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.currencyApply.CurrencyApplyActivityMessageActivity"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".activity.notice_activity.NoticeActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".activity.to_do_today.ToDoTodayActivity" />
-        <activity android:name=".activity.shopsManage.ShopsManagectivity" />
-        <activity android:name=".activity.shopsManage.ShopsManageSecondLevelActivity" />
-        <activity android:name=".activity.shopsManage.ShopsManageMessageActivity" />
-        <activity android:name=".activity.notice_activity.NoticeMessageActivity" />
-        <activity android:name=".activity.leaseManage.LeaseManagectivity" />
-        <activity android:name=".activity.leaseManage.AlreadyLeaseActivity" />
+        <activity android:name=".activity.to_do_today.ToDoTodayActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.shopsManage.ShopsManagectivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.shopsManage.ShopsManageSecondLevelActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.shopsManage.ShopsManageMessageActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.notice_activity.NoticeMessageActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.leaseManage.LeaseManagectivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.leaseManage.AlreadyLeaseActivity"
+            android:screenOrientation="portrait"
+            />
         <activity
+            android:screenOrientation="portrait"
             android:name=".activity.leaseManage.NoLeaseActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".activity.leaseManage.LeaseHistoryActivity" />
-        <activity android:name=".activity.leaseManage.ExpireRemindctivity" />
-        <activity android:name=".activity.leaseManage.ExpireRemindMessageActivity" />
-        <activity android:name=".activity.floorManage.FloorManageActivity" />
-        <activity android:name=".activity.floorManage.FloorMessageActivity" />
-        <activity android:name=".activity.floorManage.FloorHouseInformationActivity" />
-        <activity android:name=".activity.Customer.CustomerActivity" />
-        <activity android:name=".activity.Customer.CustomerAddActivity" />
+        <activity android:name=".activity.leaseManage.LeaseHistoryActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.leaseManage.ExpireRemindctivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.leaseManage.ExpireRemindMessageActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.floorManage.FloorManageActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.floorManage.FloorMessageActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.floorManage.FloorHouseInformationActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.Customer.CustomerActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.Customer.CustomerAddActivity"
+            android:screenOrientation="portrait"
+            />
         <activity
+            android:screenOrientation="portrait"
             android:name=".activity.Customer.CustomerMessageActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".activity.AgentCompany.AgentCompanyActivity" />
-        <activity android:name=".activity.AgentCompany.AgentCompanyInformationActivity"></activity>
+        <activity android:name=".activity.AgentCompany.AgentCompanyActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.AgentCompany.AgentCompanyInformationActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.AgentCompany.AddAgentCompanyPersonActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.statistic.StatisticActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.statistic.StatisticInformationActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.setpassword.SetPasswordActivity"
+            android:screenOrientation="portrait"
+            >
+
+        </activity>
     </application>
 
 </manifest>

@@ -41,4 +41,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.squareup.picasso:picasso:2.3.2'
     compile files('libs/jcore-android-1.2.7.jar')
+    compile 'com.jude:rollviewpager:1.4.6'
 }

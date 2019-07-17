@@ -65,6 +65,7 @@ public class InvalidActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             BallProgressUtils.dismisLoading();
+            no_data_rl.setEnabled(true);
             if (msg.what==1){
                 try{
                     String mes = (String) msg.obj;
@@ -105,6 +106,10 @@ public class InvalidActivity extends AppCompatActivity {
                                 Toast.makeText(InvalidActivity.this, "登录过期，请重新登录", Toast.LENGTH_SHORT).show();
                                 no_data_rl.setVisibility(View.VISIBLE);
                                 no_mess_tv.setText("登录过期，请重新登录");
+                            }else {
+                                Toast.makeText(InvalidActivity.this, "错误信息："+applyRoot.getMessage(), Toast.LENGTH_SHORT).show();
+                                no_data_rl.setVisibility(View.VISIBLE);
+                                no_mess_tv.setText("错误信息："+applyRoot.getMessage());
                             }
                         }
 
@@ -138,6 +143,7 @@ public class InvalidActivity extends AppCompatActivity {
         no_data_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                no_data_rl.setEnabled(false);
                 refresh=0;
                 start=0;
                 url= URLTools.urlBase+URLTools.apply_all_status+"msgStatus="+3+"&start="+start+"&limit="+limit;
@@ -160,37 +166,37 @@ public class InvalidActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (mList.get(i).getMsgType() == 35) {//出差详情页面
                     Intent intent = new Intent(InvalidActivity.this, AbusinessTravelMessageActivity.class);
-                    intent.putExtra("flag", flag);
+                    intent.putExtra("withdraw_flag",10);
                     intent.putExtra("id",mList.get(i).getReferId());
                     startActivity(intent);
                 } else if (mList.get(i).getMsgType() == 15) {//请假
                     Intent intent = new Intent(InvalidActivity.this, LeaveActivityMessageActivity.class);
-                    intent.putExtra("flag", flag);
+                    intent.putExtra("withdraw_flag",10);
                     intent.putExtra("id",mList.get(i).getReferId());
                     startActivity(intent);
                 } else if (mList.get(i).getMsgType() == 20) {//外出
                     Intent intent = new Intent(InvalidActivity.this, OutActivityMessageActivity.class);
-                    intent.putExtra("flag", flag);
+                    intent.putExtra("withdraw_flag",10);
                     intent.putExtra("id",mList.get(i).getReferId());
                     startActivity(intent);
                 } else if (mList.get(i).getMsgType() == 30) {//报销
                     Intent intent = new Intent(InvalidActivity.this, ReimbursementActivityMessageActivity.class);
-                    intent.putExtra("flag", flag);
+                    intent.putExtra("withdraw_flag",10);
                     intent.putExtra("id",mList.get(i).getReferId());
                     startActivity(intent);
                 } else if (mList.get(i).getMsgType() == 25) {//物品领用
                     Intent intent = new Intent(InvalidActivity.this, GoodsUseActivityMessageActivity.class);
-                    intent.putExtra("flag", flag);
+                    intent.putExtra("withdraw_flag",10);
                     intent.putExtra("id",mList.get(i).getReferId());
                     startActivity(intent);
                 } else if (mList.get(i).getMsgType() == 10) {//物品申购
                     Intent intent = new Intent(InvalidActivity.this, GoodsBuyActivityMessageActivity.class);
-                    intent.putExtra("flag", flag);
+                    intent.putExtra("withdraw_flag",10);
                     intent.putExtra("id",mList.get(i).getReferId());
                     startActivity(intent);
                 } else if (mList.get(i).getMsgType() == 40) {//通用申请
                     Intent intent = new Intent(InvalidActivity.this, CurrencyApplyActivityMessageActivity.class);
-                    intent.putExtra("flag", flag);
+                    intent.putExtra("withdraw_flag",10);
                     intent.putExtra("id",mList.get(i).getReferId());
                     startActivity(intent);
                 }

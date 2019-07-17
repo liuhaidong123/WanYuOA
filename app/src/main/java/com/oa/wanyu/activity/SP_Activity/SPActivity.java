@@ -67,6 +67,9 @@ public class SPActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             BallProgressUtils.dismisLoading();
+            no_data_rl.setEnabled(true);
+            already_tv.setEnabled(true);
+            wait_tv.setEnabled(true);
             if (msg.what == 1) {
                 try {
                     String mes = (String) msg.obj;
@@ -104,6 +107,10 @@ public class SPActivity extends AppCompatActivity {
                                 Toast.makeText(SPActivity.this, "登录过期，请重新登录", Toast.LENGTH_SHORT).show();
                                 no_data_rl.setVisibility(View.VISIBLE);
                                 no_mess_tv.setText("登录过期，请重新登录");
+                            }else {
+                                Toast.makeText(SPActivity.this, "错误信息："+approvalRoot.getMessage(), Toast.LENGTH_SHORT).show();
+                                no_data_rl.setVisibility(View.VISIBLE);
+                                no_mess_tv.setText("错误信息："+approvalRoot.getMessage());
                             }
                         }
 
@@ -136,6 +143,7 @@ public class SPActivity extends AppCompatActivity {
         no_data_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                no_data_rl.setEnabled(false);
                 refresh = 0;
                 start = 0;
                 url = URLTools.urlBase + URLTools.approval_status + "msgStatus=" + flag + "&start=" + start + "&limit=" + limit;
@@ -163,111 +171,47 @@ public class SPActivity extends AppCompatActivity {
 
                 if (mList.get(i).getMsgType() == 35) {//出差详情页面 flag=0表示待审批，1表示已审批
                     Intent intent = new Intent(SPActivity.this, AbusinessTravelMessageActivity.class);
-                    intent.putExtra("flag", flag);
+                    //intent.putExtra("flag", flag);
                     intent.putExtra("id", mList.get(i).getReferId());
-                    if (flag == 0) {
-                        startActivityForResult(intent, 1);
-                    } else {
-                        if (1 == mList.get(i).getApprovalState()) {//1=同意
-                            intent.putExtra("show_flag",100);
-                        }
-                        if (2 == mList.get(i).getApprovalState()) {//2=被驳回
-                            intent.putExtra("show_flag",200);
-                        }
-                        startActivity(intent);
-                    }
+                    intent.putExtra("withdraw_flag",10);
+                    startActivityForResult(intent, 1);
 
                 } else if (mList.get(i).getMsgType() == 15) {//请假
                     Intent intent = new Intent(SPActivity.this, LeaveActivityMessageActivity.class);
-                    intent.putExtra("flag", flag);
+                    intent.putExtra("withdraw_flag",10);
                     intent.putExtra("id", mList.get(i).getReferId());
-                    if (flag == 0) {
-                        startActivityForResult(intent, 1);
-                    } else {
-                        if (1 == mList.get(i).getApprovalState()) {//1=同意
-                            intent.putExtra("show_flag",100);
-                        }
-                        if (2 == mList.get(i).getApprovalState()) {//2=被驳回
-                            intent.putExtra("show_flag",200);
-                        }
-                        startActivity(intent);
-                    }
+                     startActivityForResult(intent, 1);
 
                 } else if (mList.get(i).getMsgType() == 20) {//外出
                     Intent intent = new Intent(SPActivity.this, OutActivityMessageActivity.class);
-                    intent.putExtra("flag", flag);
+                    intent.putExtra("withdraw_flag",10);
                     intent.putExtra("id", mList.get(i).getReferId());
-                    if (flag == 0) {
-                        startActivityForResult(intent, 1);
-                    } else {
-                        if (1 == mList.get(i).getApprovalState()) {//1=同意
-                            intent.putExtra("show_flag",100);
-                        }
-                        if (2 == mList.get(i).getApprovalState()) {//2=被驳回
-                            intent.putExtra("show_flag",200);
-                        }
-                        startActivity(intent);
-                    }
+                    startActivityForResult(intent, 1);
+
                 } else if (mList.get(i).getMsgType() == 30) {//报销
                     Intent intent = new Intent(SPActivity.this, ReimbursementActivityMessageActivity.class);
-                    intent.putExtra("flag", flag);
+                    intent.putExtra("withdraw_flag",10);
                     intent.putExtra("id", mList.get(i).getReferId());
-                    if (flag == 0) {
-                        startActivityForResult(intent, 1);
-                    } else {
-                        if (1 == mList.get(i).getApprovalState()) {//1=同意
-                            intent.putExtra("show_flag",100);
-                        }
-                        if (2 == mList.get(i).getApprovalState()) {//2=被驳回
-                            intent.putExtra("show_flag",200);
-                        }
-                        startActivity(intent);
-                    }
+                    startActivityForResult(intent, 1);
+
                 } else if (mList.get(i).getMsgType() == 25) {//物品领用
                     Intent intent = new Intent(SPActivity.this, GoodsUseActivityMessageActivity.class);
-                    intent.putExtra("flag", flag);
+                    intent.putExtra("withdraw_flag",10);
                     intent.putExtra("id", mList.get(i).getReferId());
-                    if (flag == 0) {
-                        startActivityForResult(intent, 1);
-                    } else {
-                        if (1 == mList.get(i).getApprovalState()) {//1=同意
-                            intent.putExtra("show_flag",100);
-                        }
-                        if (2 == mList.get(i).getApprovalState()) {//2=被驳回
-                            intent.putExtra("show_flag",200);
-                        }
-                        startActivity(intent);
-                    }
+                    startActivityForResult(intent, 1);
+
                 } else if (mList.get(i).getMsgType() == 10) {//物品申购
                     Intent intent = new Intent(SPActivity.this, GoodsBuyActivityMessageActivity.class);
-                    intent.putExtra("flag", flag);
+                    intent.putExtra("withdraw_flag",10);
                     intent.putExtra("id", mList.get(i).getReferId());
-                    if (flag == 0) {
-                        startActivityForResult(intent, 1);
-                    } else {
-                        if (1 == mList.get(i).getApprovalState()) {//1=同意
-                            intent.putExtra("show_flag",100);
-                        }
-                        if (2 == mList.get(i).getApprovalState()) {//2=被驳回
-                            intent.putExtra("show_flag",200);
-                        }
-                        startActivity(intent);
-                    }
+                    startActivityForResult(intent, 1);
+
                 } else if (mList.get(i).getMsgType() == 40) {//通用申请
                     Intent intent = new Intent(SPActivity.this, CurrencyApplyActivityMessageActivity.class);
-                    intent.putExtra("flag", flag);
+                    intent.putExtra("withdraw_flag",10);
                     intent.putExtra("id", mList.get(i).getReferId());
-                    if (flag == 0) {
-                        startActivityForResult(intent, 1);
-                    } else {
-                        if (1 == mList.get(i).getApprovalState()) {//1=同意
-                            intent.putExtra("show_flag",100);
-                        }
-                        if (2 == mList.get(i).getApprovalState()) {//2=被驳回
-                            intent.putExtra("show_flag",200);
-                        }
-                        startActivity(intent);
-                    }
+                    startActivityForResult(intent, 1);
+
                 }
             }
         });
@@ -304,6 +248,7 @@ public class SPActivity extends AppCompatActivity {
         wait_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                wait_tv.setEnabled(false);
                 flag = 0;
                 wait_tv.setTextColor(ContextCompat.getColor(SPActivity.this, R.color.color_3dacfe));
                 wait_line.setBackgroundResource(R.color.color_3dacfe);
@@ -328,7 +273,7 @@ public class SPActivity extends AppCompatActivity {
                 BallProgressUtils.showLoading(SPActivity.this, mAll_RL);
                 wait_tv.setTextColor(ContextCompat.getColor(SPActivity.this, R.color.color_b9b9b9));
                 wait_line.setBackgroundResource(R.color.color_b9b9b9);
-
+                already_tv.setEnabled(false);
                 refresh = 0;
                 start = 0;
                 url = URLTools.urlBase + URLTools.approval_status + "msgStatus=" + flag + "&start=" + start + "&limit=" + limit;

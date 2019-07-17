@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:id="@+id/qw"
+        android:layout_width="match_parent"
+        android:layout_height="24dp">
+
+        <TextView
+            android:id="@+id/date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="2019-06-05"
+            android:textColor="@color/color_666666"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/statistic_bg_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_toRightOf="@+id/date_tv"
+            android:background="@drawable/statistic_bg_tv"
+            android:gravity="center"
+            android:textColor="@color/color_ffffff"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/statistic_bg_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_toRightOf="@+id/date_tv"
+            android:background="@drawable/statistic_bg1"
+            android:gravity="center"
+            android:textColor="@color/color_ffffff"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/statistic_number"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/date_tv"
+            android:gravity="center"
+            android:text="120套"
+            android:paddingLeft="5dp"
+            android:textColor="@color/color_ffffff"
+            android:textSize="10sp" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/all_number"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_below="@+id/qw"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:text=""
+        android:textColor="@color/color_000000"
+        android:textSize="12sp"
+        android:visibility="gone" />
+</RelativeLayout>

@@ -67,6 +67,7 @@ public class CustomerActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             BallProgressUtils.dismisLoading();
+            mNo_Data_rl.setEnabled(true);
             if (msg.what == 1) {
                 try {
                     String mes = (String) msg.obj;
@@ -233,6 +234,7 @@ public class CustomerActivity extends AppCompatActivity {
         mNo_Data_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mNo_Data_rl.setEnabled(false);
                 BallProgressUtils.showLoading(CustomerActivity.this, mAll_Rl);
                 refreshFlag = 0;
                 start = 0;

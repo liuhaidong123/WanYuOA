@@ -50,50 +50,51 @@ import java.util.List;
 //申请中的-审批中
 public class ApprovalActivity extends AppCompatActivity {
     private ImageView mbcak;
-    private RelativeLayout mAll_RL,no_data_rl;
+    private RelativeLayout mAll_RL, no_data_rl;
     private TextView no_mess_tv;
     private ListView mListView;
     private SmartRefreshLayout smartRefreshLayout;
     private ApprovalAda approvalAda;
-    private List<ApplyRows> mList=new ArrayList<>();
+    private List<ApplyRows> mList = new ArrayList<>();
     private int flag = 2;//表示申请中的审批中跳过去的，显示撤回按钮
-    private int refresh=0;//0默认刷新，1为加载数据
-    private int start=0,limit=20;
+    private int refresh = 0;//0默认刷新，1为加载数据
+    private int start = 0, limit = 20;
     private OkHttpManager okHttpManager;
-    private Gson gson=new Gson();
+    private Gson gson = new Gson();
     private String url;
-    private Handler handler=new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             BallProgressUtils.dismisLoading();
-            if (msg.what==1){
-                try{
+            no_data_rl.setEnabled(true);
+            if (msg.what == 1) {
+                try {
                     String mes = (String) msg.obj;
                     Object o = gson.fromJson(mes, ApplyRoot.class);
-                    if (o!=null&&o instanceof ApplyRoot){
-                        ApplyRoot applyRoot= (ApplyRoot) o;
-                        if (applyRoot!=null){
-                            if ("0".equals(applyRoot.getCode())){
-                                if (applyRoot.getRows()!=null){
+                    if (o != null && o instanceof ApplyRoot) {
+                        ApplyRoot applyRoot = (ApplyRoot) o;
+                        if (applyRoot != null) {
+                            if ("0".equals(applyRoot.getCode())) {
+                                if (applyRoot.getRows() != null) {
 
-                                    if (refresh==0){//刷新
-                                        if (applyRoot.getRows().size()==0){
+                                    if (refresh == 0) {//刷新
+                                        if (applyRoot.getRows().size() == 0) {
                                             Toast.makeText(ApprovalActivity.this, "暂无审批项目", Toast.LENGTH_SHORT).show();
                                             no_data_rl.setVisibility(View.VISIBLE);
                                             no_mess_tv.setText("空空如也");
-                                        }else {
+                                        } else {
                                             no_data_rl.setVisibility(View.GONE);
                                             no_mess_tv.setText("");
                                         }
-                                        mList=applyRoot.getRows();
+                                        mList = applyRoot.getRows();
 
-                                    }else {//加载
+                                    } else {//加载
                                         for (int i = 0; i < applyRoot.getRows().size(); i++) {
                                             mList.add(applyRoot.getRows().get(i));
                                         }
 
-                                        if (applyRoot.getRows().size()==0){
+                                        if (applyRoot.getRows().size() == 0) {
                                             Toast.makeText(ApprovalActivity.this, "加载完毕", Toast.LENGTH_SHORT).show();
                                         }
 
@@ -103,21 +104,25 @@ public class ApprovalActivity extends AppCompatActivity {
                                 }
 
 
-                            }else if ("-1".equals(applyRoot.getCode())){
+                            } else if ("-1".equals(applyRoot.getCode())) {
                                 Toast.makeText(ApprovalActivity.this, "登录过期，请重新登录", Toast.LENGTH_SHORT).show();
                                 no_data_rl.setVisibility(View.VISIBLE);
                                 no_mess_tv.setText("登录过期，请重新登录");
+                            } else {
+                                Toast.makeText(ApprovalActivity.this, "错误信息:" + applyRoot.getMessage(), Toast.LENGTH_SHORT).show();
+                                no_data_rl.setVisibility(View.VISIBLE);
+                                no_mess_tv.setText("错误信息:" + applyRoot.getMessage());
                             }
                         }
 
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     Toast.makeText(ApprovalActivity.this, "数据解析错误,请重新尝试", Toast.LENGTH_SHORT).show();
                     no_data_rl.setVisibility(View.VISIBLE);
                     no_mess_tv.setText("数据解析错误,请重新尝试");
                 }
 
-            }else {
+            } else {
                 //数据错误
                 Toast.makeText(ApprovalActivity.this, "网络错误，请重新尝试", Toast.LENGTH_SHORT).show();
                 no_data_rl.setVisibility(View.VISIBLE);
@@ -125,28 +130,31 @@ public class ApprovalActivity extends AppCompatActivity {
             }
         }
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_approval);
 
-        no_data_rl=(RelativeLayout) findViewById(R.id.no_data_rl);
+        no_data_rl = (RelativeLayout) findViewById(R.id.no_data_rl);
         no_data_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               refresh=0;
-                start=0;
-                url= URLTools.urlBase+URLTools.apply_all_status+"msgStatus="+0+"&start="+start+"&limit="+limit;
-                BallProgressUtils.showLoading(ApprovalActivity.this,mAll_RL);
-                okHttpManager.getMethod(false,url,"审批中列表",handler,1);
+                no_data_rl.setEnabled(false);
+                refresh = 0;
+                start = 0;
+                url = URLTools.urlBase + URLTools.apply_all_status + "msgStatus=" + 0 + "&start=" + start + "&limit=" + limit;
+                BallProgressUtils.showLoading(ApprovalActivity.this, mAll_RL);
+                okHttpManager.getMethod(false, url, "审批中列表", handler, 1);
+
             }
         });
-        no_mess_tv= (TextView) findViewById(R.id.no_mess_tv);
+        no_mess_tv = (TextView) findViewById(R.id.no_mess_tv);
         mAll_RL = (RelativeLayout) findViewById(R.id.activity_approval);
 
-        url= URLTools.urlBase+URLTools.apply_all_status+"msgStatus="+0+"&start="+start+"&limit="+limit;
-        okHttpManager=OkHttpManager.getInstance();
-        okHttpManager.getMethod(false,url,"审批中列表",handler,1);
+        url = URLTools.urlBase + URLTools.apply_all_status + "msgStatus=" + 0 + "&start=" + start + "&limit=" + limit;
+        okHttpManager = OkHttpManager.getInstance();
+        okHttpManager.getMethod(false, url, "审批中列表", handler, 1);
 
         mbcak = (ImageView) findViewById(R.id.back_img);
         mbcak.setOnClickListener(new View.OnClickListener() {
@@ -163,41 +171,42 @@ public class ApprovalActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //flag = 2;表示申请中的审批中跳过去的，显示撤回按钮
-                if (mList.get(i).getMsgType()==35) {//出差详情页面
+                //withdraw_flag = 20;表示申请中的审批中跳过去的，显示撤回按钮
+                if (mList.get(i).getMsgType() == 35) {//出差详情页面
                     Intent intent = new Intent(ApprovalActivity.this, AbusinessTravelMessageActivity.class);
-                    intent.putExtra("flag", flag);
-                    intent.putExtra("id",mList.get(i).getReferId());
-                    startActivityForResult(intent,1);
-                } else if (mList.get(i).getMsgType()==15) {//请假
+                    intent.putExtra("withdraw_flag",20);
+                    intent.putExtra("id", mList.get(i).getReferId());
+                    startActivityForResult(intent, 1);
+                } else if (mList.get(i).getMsgType() == 15) {//请假
                     Intent intent = new Intent(ApprovalActivity.this, LeaveActivityMessageActivity.class);
-                    intent.putExtra("flag", flag);
-                    intent.putExtra("id",mList.get(i).getReferId());
-                    startActivityForResult(intent,1);
-                } else if (mList.get(i).getMsgType()==20) {//外出
+                    intent.putExtra("withdraw_flag",20);
+                    intent.putExtra("id", mList.get(i).getReferId());
+                    startActivityForResult(intent, 1);
+                } else if (mList.get(i).getMsgType() == 20) {//外出
                     Intent intent = new Intent(ApprovalActivity.this, OutActivityMessageActivity.class);
-                    intent.putExtra("flag", flag);
-                    intent.putExtra("id",mList.get(i).getReferId());
-                    startActivityForResult(intent,1);
-                } else if (mList.get(i).getMsgType()==30) {//报销
+                    intent.putExtra("withdraw_flag",20);
+                    intent.putExtra("id", mList.get(i).getReferId());
+                    startActivityForResult(intent, 1);
+                } else if (mList.get(i).getMsgType() == 30) {//报销
                     Intent intent = new Intent(ApprovalActivity.this, ReimbursementActivityMessageActivity.class);
-                    intent.putExtra("flag", flag);
-                    intent.putExtra("id",mList.get(i).getReferId());
-                    startActivityForResult(intent,1);
-                } else if (mList.get(i).getMsgType()==25) {//物品领用
+                    intent.putExtra("withdraw_flag",20);
+                    intent.putExtra("id", mList.get(i).getReferId());
+                    startActivityForResult(intent, 1);
+                } else if (mList.get(i).getMsgType() == 25) {//物品领用
                     Intent intent = new Intent(ApprovalActivity.this, GoodsUseActivityMessageActivity.class);
-                    intent.putExtra("flag", flag);
-                    intent.putExtra("id",mList.get(i).getReferId());
-                    startActivityForResult(intent,1);
-                } else if (mList.get(i).getMsgType()==10) {//物品申购
+                    intent.putExtra("withdraw_flag",20);
+                    intent.putExtra("id", mList.get(i).getReferId());
+                    startActivityForResult(intent, 1);
+                } else if (mList.get(i).getMsgType() == 10) {//物品申购
                     Intent intent = new Intent(ApprovalActivity.this, GoodsBuyActivityMessageActivity.class);
-                    intent.putExtra("flag", flag);
-                    intent.putExtra("id",mList.get(i).getReferId());
-                    startActivityForResult(intent,1);
-                } else if (mList.get(i).getMsgType()==40) {//通用申请
+                    intent.putExtra("withdraw_flag",20);
+                    intent.putExtra("id", mList.get(i).getReferId());
+                    startActivityForResult(intent, 1);
+                } else if (mList.get(i).getMsgType() == 40) {//通用申请
                     Intent intent = new Intent(ApprovalActivity.this, CurrencyApplyActivityMessageActivity.class);
-                    intent.putExtra("flag", flag);
-                    intent.putExtra("id",mList.get(i).getReferId());
-                    startActivityForResult(intent,1);
+                    intent.putExtra("withdraw_flag",20);
+                    intent.putExtra("id", mList.get(i).getReferId());
+                    startActivityForResult(intent, 1);
                 }
             }
         });
@@ -208,10 +217,10 @@ public class ApprovalActivity extends AppCompatActivity {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
-                refresh=0;
-                start=0;
-                url= URLTools.urlBase+URLTools.apply_all_status+"msgStatus="+0+"&start="+start+"&limit="+limit;
-                okHttpManager.getMethod(false,url,"审批中列表",handler,1);
+                refresh = 0;
+                start = 0;
+                url = URLTools.urlBase + URLTools.apply_all_status + "msgStatus=" + 0 + "&start=" + start + "&limit=" + limit;
+                okHttpManager.getMethod(false, url, "审批中列表", handler, 1);
             }
         });
 
@@ -219,10 +228,10 @@ public class ApprovalActivity extends AppCompatActivity {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
                 refreshlayout.finishLoadmore(2000/*,false*/);//传入false表示加载失败
-                refresh=1;
-                start+=20;
-                url= URLTools.urlBase+URLTools.apply_all_status+"msgStatus="+0+"&start="+start+"&limit="+limit;
-                okHttpManager.getMethod(false,url,"审批中列表",handler,1);
+                refresh = 1;
+                start += 20;
+                url = URLTools.urlBase + URLTools.apply_all_status + "msgStatus=" + 0 + "&start=" + start + "&limit=" + limit;
+                okHttpManager.getMethod(false, url, "审批中列表", handler, 1);
             }
         });
 
@@ -274,38 +283,38 @@ public class ApprovalActivity extends AppCompatActivity {
 
             approvalHolder.status.setText("审批中");
             approvalHolder.title_rl.setBackgroundResource(R.drawable.spz_bg);
-            if (mList.get(i).getMsgType()==35){//出差申请图片
+            if (mList.get(i).getMsgType() == 35) {//出差申请图片
                 approvalHolder.type_img.setImageResource(R.mipmap.chucha_item);
-            }else if (mList.get(i).getMsgType()==15){//请假图片
+            } else if (mList.get(i).getMsgType() == 15) {//请假图片
                 approvalHolder.type_img.setImageResource(R.mipmap.jia_item);
-            }else if (mList.get(i).getMsgType()==20){//外出图片
+            } else if (mList.get(i).getMsgType() == 20) {//外出图片
                 approvalHolder.type_img.setImageResource(R.mipmap.waichu_item);
-            }else if (mList.get(i).getMsgType()==30){//报销
+            } else if (mList.get(i).getMsgType() == 30) {//报销
                 approvalHolder.type_img.setImageResource(R.mipmap.baoxiao_item);
-            }else if (mList.get(i).getMsgType()==25){//物品领用图片
+            } else if (mList.get(i).getMsgType() == 25) {//物品领用图片
                 approvalHolder.type_img.setImageResource(R.mipmap.lingyong_item);
-            }else if (mList.get(i).getMsgType()==10){//物品申购图片
+            } else if (mList.get(i).getMsgType() == 10) {//物品申购图片
                 approvalHolder.type_img.setImageResource(R.mipmap.shengou_item);
-            }else if (mList.get(i).getMsgType()==40){//通用申请图片
+            } else if (mList.get(i).getMsgType() == 40) {//通用申请图片
                 approvalHolder.type_img.setImageResource(R.mipmap.tongyong_item);
             }
 
 
-            approvalHolder.name.setText(mList.get(i).getTrueName()+"");
-            if ("".equals(mList.get(i).getDepartmentName())){
+            approvalHolder.name.setText(mList.get(i).getTrueName() + "");
+            if ("".equals(mList.get(i).getDepartmentName())) {
                 approvalHolder.bumen.setText("暂无");
-            }else {
-                approvalHolder.bumen.setText(mList.get(i).getDepartmentName()+"");
+            } else {
+                approvalHolder.bumen.setText(mList.get(i).getDepartmentName() + "");
             }
 
-            if ("".equals(mList.get(i).getPosition())){
+            if ("".equals(mList.get(i).getPosition())) {
                 approvalHolder.job.setText("暂无");
-            }else {
-                approvalHolder.job.setText(mList.get(i).getPosition()+"");
+            } else {
+                approvalHolder.job.setText(mList.get(i).getPosition() + "");
             }
 
-            approvalHolder.time.setText(mList.get(i).getCreateTimeString()+"");
-            Picasso.with(ApprovalActivity.this).load(URLTools.urlBase+mList.get(i).getAvatar()).error(R.mipmap.head_img_icon).into(approvalHolder.circleImg);
+            approvalHolder.time.setText(mList.get(i).getCreateTimeString() + "");
+            Picasso.with(ApprovalActivity.this).load(URLTools.urlBase + mList.get(i).getAvatar()).error(R.mipmap.head_img_icon).into(approvalHolder.circleImg);
             return view;
         }
 
@@ -320,11 +329,11 @@ public class ApprovalActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==1&&resultCode==RESULT_OK){
-            refresh=0;
-            start=0;
-            url= URLTools.urlBase+URLTools.apply_all_status+"msgStatus="+0+"&start="+start+"&limit="+limit;
-            okHttpManager.getMethod(false,url,"审批中列表",handler,1);
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            refresh = 0;
+            start = 0;
+            url = URLTools.urlBase + URLTools.apply_all_status + "msgStatus=" + 0 + "&start=" + start + "&limit=" + limit;
+            okHttpManager.getMethod(false, url, "审批中列表", handler, 1);
         }
     }
 }

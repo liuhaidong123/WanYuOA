@@ -39,6 +39,8 @@ import java.util.List;
 public class GoodsBuyActivityMessageActivity extends AppCompatActivity {
     private ImageView mBack, show_img;
     long referId;
+    private int withdraw = -1;//判断是否显示撤回按钮
+    private String person_name="",department_name="";
     private RelativeLayout mAll_RL, no_data_rl;
     private TextView no_mess_tv;
     private ListView mListview;
@@ -58,6 +60,7 @@ public class GoodsBuyActivityMessageActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             BallProgressUtils.dismisLoading();
+            no_data_rl.setEnabled(true);
             if (msg.what == 1) {
                 try {
                     String s = (String) msg.obj;
@@ -70,7 +73,54 @@ public class GoodsBuyActivityMessageActivity extends AppCompatActivity {
                                 if (goodsBuyInformationRoot.getApplyBuy() != null) {
                                     GoodsBuyInformationBean goodsBuyInformationBean = goodsBuyInformationRoot.getApplyBuy();
                                     all_price.setText(goodsBuyInformationBean.getAmount() + "");
+                                    person_name=goodsBuyInformationBean.getTrueName();
+                                    department_name=goodsBuyInformationBean.getDepartmentName();
 
+
+                                    //status=1  驳回   ；2 已同意  ；0 待审批 3失效；withdraw=10变示不显示撤回按钮，20表示显示撤回按钮
+                                    int status = goodsBuyInformationRoot.getApplyBuy().getStatus();
+                                    if (status == 0) {
+                                        if (withdraw == 10) {//不显示撤回按钮
+                                            agree_disagree_ll.setVisibility(View.VISIBLE);
+                                            agree_btn.setVisibility(View.VISIBLE);
+                                            disagree_btn.setVisibility(View.VISIBLE);
+                                            withdraw_btn.setVisibility(View.GONE);
+                                        } else if (withdraw == 20) {//显示撤回按钮
+                                            agree_disagree_ll.setVisibility(View.VISIBLE);
+                                            agree_btn.setVisibility(View.GONE);
+                                            disagree_btn.setVisibility(View.GONE);
+                                            withdraw_btn.setVisibility(View.VISIBLE);
+                                        } else {//撤回
+                                            agree_disagree_ll.setVisibility(View.GONE);
+                                            agree_btn.setVisibility(View.GONE);
+                                            disagree_btn.setVisibility(View.GONE);
+                                            withdraw_btn.setVisibility(View.GONE);
+                                        }
+
+
+                                    } else if (status == 1) {
+
+                                        show_img.setVisibility(View.VISIBLE);
+                                        show_img.setImageResource(R.mipmap.b_img);
+
+                                        agree_disagree_ll.setVisibility(View.GONE);
+                                        agree_btn.setVisibility(View.GONE);
+                                        disagree_btn.setVisibility(View.GONE);
+                                        withdraw_btn.setVisibility(View.GONE);
+                                    } else if (status == 2) {
+                                        show_img.setVisibility(View.VISIBLE);
+                                        show_img.setImageResource(R.mipmap.t_img);
+                                        agree_disagree_ll.setVisibility(View.GONE);
+                                        agree_btn.setVisibility(View.GONE);
+                                        disagree_btn.setVisibility(View.GONE);
+                                        withdraw_btn.setVisibility(View.GONE);
+
+                                    } else {//失效
+                                        agree_disagree_ll.setVisibility(View.GONE);
+                                        agree_btn.setVisibility(View.GONE);
+                                        disagree_btn.setVisibility(View.GONE);
+                                        withdraw_btn.setVisibility(View.GONE);
+                                    }
                                     if (goodsBuyInformationBean.getItems() != null) {
                                         mList = goodsBuyInformationBean.getItems();
                                         goodsBuyMessageAda.notifyDataSetChanged();
@@ -90,6 +140,12 @@ public class GoodsBuyActivityMessageActivity extends AppCompatActivity {
                                 Toast.makeText(GoodsBuyActivityMessageActivity.this, "登录过期，请重新登录", Toast.LENGTH_SHORT).show();
                                 no_data_rl.setVisibility(View.VISIBLE);
                                 no_mess_tv.setText("登录过期，请重新登录");
+                                show_img.setVisibility(View.GONE);
+                                agree_disagree_ll.setVisibility(View.GONE);
+                            }else {
+                                Toast.makeText(GoodsBuyActivityMessageActivity.this, "错误信息："+goodsBuyInformationRoot.getMessage(), Toast.LENGTH_SHORT).show();
+                                no_data_rl.setVisibility(View.VISIBLE);
+                                no_mess_tv.setText("错误信息："+goodsBuyInformationRoot.getMessage());
                                 show_img.setVisibility(View.GONE);
                                 agree_disagree_ll.setVisibility(View.GONE);
                             }
@@ -125,6 +181,9 @@ public class GoodsBuyActivityMessageActivity extends AppCompatActivity {
                             } else if ("-1".equals(successBean.getCode())) {
                                 Toast.makeText(GoodsBuyActivityMessageActivity.this, successBean.getMessage() + "", Toast.LENGTH_SHORT).show();
 
+                            }else {
+                                Toast.makeText(GoodsBuyActivityMessageActivity.this, successBean.getMessage() + "", Toast.LENGTH_SHORT).show();
+
                             }
                         }
                     }
@@ -144,6 +203,9 @@ public class GoodsBuyActivityMessageActivity extends AppCompatActivity {
                                 setResult(RESULT_OK, intent);
                                 finish();
                             } else if ("-1".equals(successBean.getCode())) {
+                                Toast.makeText(GoodsBuyActivityMessageActivity.this, successBean.getMessage() + "", Toast.LENGTH_SHORT).show();
+
+                            }else {
                                 Toast.makeText(GoodsBuyActivityMessageActivity.this, successBean.getMessage() + "", Toast.LENGTH_SHORT).show();
 
                             }
@@ -190,6 +252,7 @@ public class GoodsBuyActivityMessageActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (referId != -1) {//请求详情
+                    no_data_rl.setEnabled(false);
                     BallProgressUtils.showLoading(GoodsBuyActivityMessageActivity.this, mAll_RL);
                     okHttpManager.getMethod(false, url + "id=" + referId, "请求申购详情", handler, 1);
                 } else {//传过来的详情ID错误
@@ -309,45 +372,11 @@ public class GoodsBuyActivityMessageActivity extends AppCompatActivity {
 
         intent = getIntent();
         referId = intent.getLongExtra("id", -1);
+        withdraw = intent.getIntExtra("withdraw_flag", -1);
         if (referId != -1) {//请求详情
             okHttpManager.getMethod(false, url + "id=" + referId, "请求申购详情", handler, 1);
         } else {//传过来的详情ID错误
             Toast.makeText(this, "请求详情ID错误", Toast.LENGTH_SHORT).show();
-        }
-
-        //0表示待审批（显示同意，驳回），1表示已审批，什么都不显示，2表示申请中的审批中跳转过来的，（显示撤回按钮）
-        int flag = intent.getIntExtra("flag", -1);
-        int show_flag = intent.getIntExtra("show_flag", -1);
-        if (flag == 0) {
-            agree_disagree_ll.setVisibility(View.VISIBLE);
-            agree_btn.setVisibility(View.VISIBLE);
-            disagree_btn.setVisibility(View.VISIBLE);
-            withdraw_btn.setVisibility(View.GONE);
-        } else if (flag == 1) {
-            if (show_flag == 100) {//已完成图片
-                show_img.setVisibility(View.VISIBLE);
-                show_img.setImageResource(R.mipmap.t_img);
-            } else if (show_flag == 200) {//被驳回图片
-                show_img.setVisibility(View.VISIBLE);
-                show_img.setImageResource(R.mipmap.b_img);
-            } else {
-                show_img.setVisibility(View.GONE);
-            }
-            agree_disagree_ll.setVisibility(View.GONE);
-            agree_btn.setVisibility(View.GONE);
-            disagree_btn.setVisibility(View.GONE);
-            withdraw_btn.setVisibility(View.GONE);
-        } else if (flag == 2) {
-            //撤销时需要弹框
-            agree_disagree_ll.setVisibility(View.VISIBLE);
-            agree_btn.setVisibility(View.GONE);
-            disagree_btn.setVisibility(View.GONE);
-            withdraw_btn.setVisibility(View.VISIBLE);
-        } else {//错误
-            agree_disagree_ll.setVisibility(View.GONE);
-            agree_btn.setVisibility(View.GONE);
-            disagree_btn.setVisibility(View.GONE);
-            withdraw_btn.setVisibility(View.GONE);
         }
 
     }
@@ -382,7 +411,7 @@ public class GoodsBuyActivityMessageActivity extends AppCompatActivity {
                 goodsBuyMessageHolder.num = view.findViewById(R.id.edit_goods_buy_num);
                 goodsBuyMessageHolder.allprice = view.findViewById(R.id.goods_all_price);
                 goodsBuyMessageHolder.mess = view.findViewById(R.id.edit_goods_use_reason);
-
+                goodsBuyMessageHolder.person_and_department=view.findViewById(R.id.person_and_department);
                 view.setTag(goodsBuyMessageHolder);
             } else {
                 goodsBuyMessageHolder = (GoodsBuyMessageHolder) view.getTag();
@@ -396,12 +425,13 @@ public class GoodsBuyActivityMessageActivity extends AppCompatActivity {
             goodsBuyMessageHolder.num.setText(mList.get(i).getNum() + "");
             goodsBuyMessageHolder.allprice.setText(mList.get(i).getAmount() + "");
             goodsBuyMessageHolder.mess.setText(mList.get(i).getPurpose() + "");
+            goodsBuyMessageHolder.person_and_department.setText(department_name+"  "+person_name);
             return view;
         }
 
         class GoodsBuyMessageHolder {
             TextView mingxi, allprice;
-            EditText name, model, unitprice, num, mess;
+            EditText name, model, unitprice, num, mess,person_and_department;
         }
     }
 }

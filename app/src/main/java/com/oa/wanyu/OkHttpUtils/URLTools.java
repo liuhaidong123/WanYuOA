@@ -5,7 +5,8 @@ package com.oa.wanyu.OkHttpUtils;
  */
 
 public class URLTools {
-    public static String urlBase = "http://192.168.1.168:8086";
+    public static String urlBase="http://59.110.169.148:8183";
+    //public static String urlBase = "http://192.168.1.168:8086";
     public static String login_url = "/admin/login?";//登录接口 post 参数name手机号，password密码
     public static String isLogin_url = "/admin/isLogin";//  判断是否登录接口：返回 code 说明： 0、已登录 -1、您还没有登录！
     public static String apply_all_status = "/mobileapi/convergeApply/findPage.do?";//msgStatus=   申请》 0=审批中，1=被驳回，2=已审批，3=已撤销
@@ -62,6 +63,10 @@ public class URLTools {
     public static String user_message = "/mobileapi/user/get.do";//获取用户信息
 
     public static String select_contacts = "/mobileapi/contact/findList.do?";//  查询联系人列表
+    public static String select_contacts2 = "/mobileapi/user/findContact.do?";//  查询联系人列表2
+
+
+
     public static String select_history_lease = "/mobileapi/shopLog/findList.do?";//  查询出租历史记录接口shopId=1
 
     public static String expire_remind = "/mobileapi/shop/findRemaining.do?";//到期提醒列表
@@ -78,9 +83,24 @@ public class URLTools {
     public static String customer_list="/mobileapi/customer/findPage.do?";//客户列表加字段name为搜索接口
     public static String customer_add="/mobileapi/customer/save.do?";//添加客户(也是标记为星级客户接口，需要id,star=0,非星级，1星级)
     public static String customer_message="/mobileapi/customer/get.do?";//客户详情id="";
+
     public static String customer_delete="/mobileapi/customer/delete.do?";//删除客户id="";
 
     public static String agent_cpmpany_list="/mobileapi/company/findPage.do?";//代理公司接口
     public static String agent_cpmpany_information_list="/mobileapi/company/get.do?";//代理公司详情接口id=""
+    public static String agent_company_add_person="/mobileapi/user/save.do?";//添加销售人员接口
+    public static String agent_company_delete_person="/mobileapi/user/delete.do?";//删除销售人员接口
+    public static String salesperson_list="/mobileapi/user/findList.do?";//销售人员列表companyId=1此id是销售人员登录时保存下来的id
+
+
+
+    public static String floor_statistic_number="/mobileapi/houseSale/findList.do?";//楼房统计(按月统计)
+    public static String floor_statistic_month_number="/mobileapi/houseSale/findList.do?";//楼房统计(按每个月数量明细)
+
+
+    public static String set_password="/mobileapi/user/modPwd.do?";//修改密码接口password=旧密码&password2=新密码
+    public static String exit_app="/admin/logoutAjax?";//退出登录
+    public static String viewpager_img="/mobileapi/carousel/findList.do?";//首页轮播图接口
+    public static String check_verson_code="/mobileapi/dict/get.do?id=6";//检测版本号
 
 }

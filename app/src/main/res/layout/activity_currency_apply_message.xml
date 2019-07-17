@@ -40,12 +40,38 @@
         android:background="@color/color_f9f9f9" />
 
     <TextView
-        android:id="@+id/apply_content_1"
+        android:id="@+id/person_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/wq"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:text="申请人:"
+        android:textColor="@color/color_000000"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/person_and_department"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wq"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/apply_content_1"
+        android:gravity="center_vertical"
+        android:text=""
+        android:textColor="@color/color_000000"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/apply_content_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/person_tv"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
         android:gravity="center_vertical"
         android:text="申请内容:"
         android:textColor="@color/color_000000"
@@ -55,10 +81,10 @@
         android:id="@+id/apply_content_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/wq"
+        android:layout_below="@+id/person_tv"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/apply_content_1"
         android:gravity="center_vertical"
         android:text=""

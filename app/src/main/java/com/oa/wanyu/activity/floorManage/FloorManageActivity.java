@@ -61,6 +61,9 @@ public class FloorManageActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             BallProgressUtils.dismisLoading();
+            mAddress_tv.setEnabled(true);
+            mFloor_tv.setEnabled(true);
+            mUnit_tv.setEnabled(true);
             if (msg.what == 1) {//小区接口
                 try {
 
@@ -119,6 +122,8 @@ public class FloorManageActivity extends AppCompatActivity {
                             } else if ("-1".equals(floorNumRoot.getCode())) {
                                 Toast.makeText(FloorManageActivity.this, "登录过期，请重新登录", Toast.LENGTH_SHORT).show();
 
+                            }else {
+                                Toast.makeText(FloorManageActivity.this, "错误信息:"+floorNumRoot.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -151,6 +156,8 @@ public class FloorManageActivity extends AppCompatActivity {
                             } else if ("-1".equals(floorUnitRoot.getCode())) {
                                 Toast.makeText(FloorManageActivity.this, "登录过期，请重新登录", Toast.LENGTH_SHORT).show();
 
+                            }else {
+                                Toast.makeText(FloorManageActivity.this, "错误信息:"+floorUnitRoot.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -194,6 +201,7 @@ public class FloorManageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (addressList.size() == 0) {
+                    mAddress_tv.setEnabled(false);
                     BallProgressUtils.showLoading(FloorManageActivity.this, mAll);
                     okHttpManager.getMethod(false, url, "小区接口", handler, 1);
                     Toast.makeText(FloorManageActivity.this, "正在查询数据，请稍等。。。", Toast.LENGTH_SHORT).show();
@@ -210,6 +218,7 @@ public class FloorManageActivity extends AppCompatActivity {
 
                 if (buildingID != -1) {
                     if (floorList.size() == 0) {
+                        mFloor_tv.setEnabled(false);
                         BallProgressUtils.showLoading(FloorManageActivity.this, mAll);
                         okHttpManager.getMethod(false, numUrl + "buildingId=" + buildingID, "楼号接口", handler, 2);
                         Toast.makeText(FloorManageActivity.this, "正在查询数据，请稍等。。。", Toast.LENGTH_SHORT).show();
@@ -230,6 +239,7 @@ public class FloorManageActivity extends AppCompatActivity {
 
                 if (!"".equals(houseNum)) {
                     if (unitList.size() == 0) {
+                        mUnit_tv.setEnabled(false);
                         BallProgressUtils.showLoading(FloorManageActivity.this, mAll);
                         okHttpManager.getMethod(false, unitUrl + "buildingId=" + buildingID + "&houseNum=" + houseNum, "单元列表接口", handler, 3);
                         Toast.makeText(FloorManageActivity.this, "正在查询数据，请稍等。。。", Toast.LENGTH_SHORT).show();
@@ -274,6 +284,12 @@ public class FloorManageActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 mAddress_tv.setText(addressList.get(i).getName());
                 buildingID = addressList.get(i).getId();
+                mFloor_tv.setText("");
+                houseNum="";
+                mUnit_tv.setText("");
+                unit="";
+                floorList.clear();
+                unitList.clear();
                 okHttpManager.getMethod(false, numUrl + "buildingId=" + buildingID, "楼号接口", handler, 2);
                 address_alertDialog.dismiss();
             }
@@ -293,6 +309,9 @@ public class FloorManageActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 mFloor_tv.setText(floorList.get(i).getHouseNum() + "号楼");
                 houseNum = floorList.get(i).getHouseNum();
+                mUnit_tv.setText("");
+                unit="";
+                unitList.clear();
                 okHttpManager.getMethod(false, unitUrl + "buildingId=" + buildingID + "&houseNum=" + houseNum, "单元列表接口", handler, 3);
                 floor_alertDialog.dismiss();
             }

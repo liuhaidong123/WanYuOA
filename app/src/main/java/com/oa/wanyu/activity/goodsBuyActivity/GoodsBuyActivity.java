@@ -133,7 +133,6 @@ public class GoodsBuyActivity extends AppCompatActivity {
                     Log.e("json字符串编码之后", ss);
                     Map<Object, Object> map = new HashMap<>();
                     map.put("items", ss);
-
                     okHttpManager.postMethod(false, url, "物品申购", map, handler, 1);
 
                 } catch (UnsupportedEncodingException e) {

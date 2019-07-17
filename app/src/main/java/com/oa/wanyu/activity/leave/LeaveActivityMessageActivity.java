@@ -29,9 +29,10 @@ import com.oa.wanyu.myutils.BallProgressUtils;
 public class LeaveActivityMessageActivity extends AppCompatActivity {
     private ImageView mBack,show_img;
     long referId;
+    private int withdraw = -1;//判断是否显示撤回按钮
     private RelativeLayout mAll_RL, no_data_rl;
     private TextView no_mess_tv;
-    private TextView mLeaveType, startTime, endTime, dayTv;
+    private TextView mLeaveType, startTime, endTime, dayTv,person_and_department;
     private EditText mReason_edit;
     private LinearLayout agree_disagree_ll;
     private TextView agree_btn, disagree_btn, withdraw_btn;//同意，驳回，撤回
@@ -46,6 +47,7 @@ public class LeaveActivityMessageActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             BallProgressUtils.dismisLoading();
+            no_data_rl.setEnabled(true);
             if (msg.what == 1) {
                 try {
                     String s = (String) msg.obj;
@@ -56,12 +58,57 @@ public class LeaveActivityMessageActivity extends AppCompatActivity {
                             if ("0".equals(leaveInformationRoot.getCode())) {
                                 agree_disagree_ll.setVisibility(View.VISIBLE);
                                 if (leaveInformationRoot.getApplyLeave() != null) {
+                                    person_and_department.setText(leaveInformationRoot.getApplyLeave().getDepartmentName()+" "+leaveInformationRoot.getApplyLeave().getTrueName());
                                     mLeaveType.setText(leaveInformationRoot.getApplyLeave().getTyp()+"");
                                     startTime.setText(leaveInformationRoot.getApplyLeave().getBeginDateString()+"");
                                     endTime.setText(leaveInformationRoot.getApplyLeave().getEndDateString()+"");
                                     dayTv.setText(leaveInformationRoot.getApplyLeave().getDuration()+"");
                                     mReason_edit.setText(leaveInformationRoot.getApplyLeave().getReason()+"");
 
+                                    //status=1  驳回   ；2 已同意  ；0 待审批 ； 3 失效;10变示不显示撤回按钮，20表示显示撤回按钮
+                                    int status =leaveInformationRoot.getApplyLeave().getStatus();
+                                    if (status == 0) {
+
+                                        if (withdraw==10){//不显示撤回按钮
+                                            agree_disagree_ll.setVisibility(View.VISIBLE);
+                                            agree_btn.setVisibility(View.VISIBLE);
+                                            disagree_btn.setVisibility(View.VISIBLE);
+                                            withdraw_btn.setVisibility(View.GONE);
+                                        }else if (withdraw==20){//显示撤回按钮
+                                            agree_disagree_ll.setVisibility(View.VISIBLE);
+                                            agree_btn.setVisibility(View.GONE);
+                                            disagree_btn.setVisibility(View.GONE);
+                                            withdraw_btn.setVisibility(View.VISIBLE);
+                                        }else {//
+                                            agree_disagree_ll.setVisibility(View.GONE);
+                                            agree_btn.setVisibility(View.GONE);
+                                            disagree_btn.setVisibility(View.GONE);
+                                            withdraw_btn.setVisibility(View.GONE);
+                                        }
+
+
+                                    } else if (status == 1) {
+
+                                        show_img.setVisibility(View.VISIBLE);
+                                        show_img.setImageResource(R.mipmap.b_img);
+                                        agree_disagree_ll.setVisibility(View.GONE);
+                                        agree_btn.setVisibility(View.GONE);
+                                        disagree_btn.setVisibility(View.GONE);
+                                        withdraw_btn.setVisibility(View.GONE);
+                                    } else if (status == 2) {
+                                        show_img.setVisibility(View.VISIBLE);
+                                        show_img.setImageResource(R.mipmap.t_img);
+                                        agree_disagree_ll.setVisibility(View.GONE);
+                                        agree_btn.setVisibility(View.GONE);
+                                        disagree_btn.setVisibility(View.GONE);
+                                        withdraw_btn.setVisibility(View.GONE);
+
+                                    } else {//失效
+                                        agree_disagree_ll.setVisibility(View.GONE);
+                                        agree_btn.setVisibility(View.GONE);
+                                        disagree_btn.setVisibility(View.GONE);
+                                        withdraw_btn.setVisibility(View.GONE);
+                                    }
                                 }else {
                                     Toast.makeText(LeaveActivityMessageActivity.this, "此数据不存在", Toast.LENGTH_SHORT).show();
                                 }
@@ -71,6 +118,12 @@ public class LeaveActivityMessageActivity extends AppCompatActivity {
                                 Toast.makeText(LeaveActivityMessageActivity.this, "登录过期，请重新登录", Toast.LENGTH_SHORT).show();
                                 no_data_rl.setVisibility(View.VISIBLE);
                                 no_mess_tv.setText("登录过期，请重新登录");
+                                show_img.setVisibility(View.GONE);
+                                agree_disagree_ll.setVisibility(View.GONE);
+                            }else {
+                                Toast.makeText(LeaveActivityMessageActivity.this, "失败信息："+leaveInformationRoot.getMessage(), Toast.LENGTH_SHORT).show();
+                                no_data_rl.setVisibility(View.VISIBLE);
+                                no_mess_tv.setText("失败信息："+leaveInformationRoot.getMessage());
                                 show_img.setVisibility(View.GONE);
                                 agree_disagree_ll.setVisibility(View.GONE);
                             }
@@ -105,6 +158,9 @@ public class LeaveActivityMessageActivity extends AppCompatActivity {
                             } else if ("-1".equals(successBean.getCode())) {
                                 Toast.makeText(LeaveActivityMessageActivity.this, successBean.getMessage() + "", Toast.LENGTH_SHORT).show();
 
+                            }else {
+                                Toast.makeText(LeaveActivityMessageActivity.this, successBean.getMessage() + "", Toast.LENGTH_SHORT).show();
+
                             }
                         }
                     }
@@ -124,6 +180,9 @@ public class LeaveActivityMessageActivity extends AppCompatActivity {
                                 setResult(RESULT_OK, intent);
                                 finish();
                             } else if ("-1".equals(successBean.getCode())) {
+                                Toast.makeText(LeaveActivityMessageActivity.this, successBean.getMessage() + "", Toast.LENGTH_SHORT).show();
+
+                            }else {
                                 Toast.makeText(LeaveActivityMessageActivity.this, successBean.getMessage() + "", Toast.LENGTH_SHORT).show();
 
                             }
@@ -170,6 +229,7 @@ public class LeaveActivityMessageActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (referId != -1) {//请求详情
+                    no_data_rl.setEnabled(false);
                     BallProgressUtils.showLoading(LeaveActivityMessageActivity.this, mAll_RL);
                     okHttpManager.getMethod(false, url + "id=" + referId, "请求请假详情", handler, 1);
                 } else {//传过来的详情ID错误
@@ -177,6 +237,8 @@ public class LeaveActivityMessageActivity extends AppCompatActivity {
                 }
             }
         });
+
+        person_and_department= (TextView) findViewById(R.id.person_and_department);
 
         //请假类型
         mLeaveType = (TextView) findViewById(R.id.leave_type_tv);
@@ -292,44 +354,12 @@ public class LeaveActivityMessageActivity extends AppCompatActivity {
 
         intent = getIntent();
         referId = intent.getLongExtra("id", -1);
+        withdraw = intent.getIntExtra("withdraw_flag", -1);
         if (referId != -1) {//请求详情
             okHttpManager.getMethod(false, url + "id=" + referId, "请求请假详情", handler, 1);
         } else {//传过来的详情ID错误
             Toast.makeText(this, "请求详情ID错误", Toast.LENGTH_SHORT).show();
         }
-        //0表示待审批（显示同意，驳回），1表示已审批，什么都不显示，2表示申请中的审批中跳转过来的，（显示撤回按钮）
-        int flag = intent.getIntExtra("flag", -1);
-        int show_flag=intent.getIntExtra("show_flag",-1);
-        if (flag == 0) {
-            agree_disagree_ll.setVisibility(View.VISIBLE);
-            agree_btn.setVisibility(View.VISIBLE);
-            disagree_btn.setVisibility(View.VISIBLE);
-            withdraw_btn.setVisibility(View.GONE);
-        } else if (flag == 1) {
-            if (show_flag==100){//已完成图片
-                show_img.setVisibility(View.VISIBLE);
-                show_img.setImageResource(R.mipmap.t_img);
-            }else if (show_flag==200){//被驳回图片
-                show_img.setVisibility(View.VISIBLE);
-                show_img.setImageResource(R.mipmap.b_img);
-            }else {
-                show_img.setVisibility(View.GONE);
-            }
-            agree_disagree_ll.setVisibility(View.GONE);
-            agree_btn.setVisibility(View.GONE);
-            disagree_btn.setVisibility(View.GONE);
-            withdraw_btn.setVisibility(View.GONE);
-        } else if (flag == 2) {
-            //撤销时需要弹框
-            agree_disagree_ll.setVisibility(View.VISIBLE);
-            agree_btn.setVisibility(View.GONE);
-            disagree_btn.setVisibility(View.GONE);
-            withdraw_btn.setVisibility(View.VISIBLE);
-        } else {//错误
-            agree_disagree_ll.setVisibility(View.GONE);
-            agree_btn.setVisibility(View.GONE);
-            disagree_btn.setVisibility(View.GONE);
-            withdraw_btn.setVisibility(View.GONE);
-        }
+
     }
 }

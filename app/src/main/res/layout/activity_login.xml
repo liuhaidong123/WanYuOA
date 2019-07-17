@@ -31,6 +31,7 @@
             android:background="@color/color_3dacfe" />
 
         <TextView
+
             android:id="@+id/register_btn"
             android:layout_width="97dp"
             android:layout_height="wrap_content"
@@ -73,7 +74,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:hint="请输入密码"
-        android:inputType="text"
+        android:inputType="numberPassword"
         android:textColor="@color/color_333333"
         android:textColorHint="@color/color_333333"
         android:textSize="12sp" />

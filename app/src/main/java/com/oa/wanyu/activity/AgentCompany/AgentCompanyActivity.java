@@ -66,6 +66,7 @@ public class AgentCompanyActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             BallProgressUtils.dismisLoading();
+            no_data_rl.setEnabled(true);
             if (msg.what == 1) {
                 try {
                     String mes = (String) msg.obj;
@@ -138,6 +139,7 @@ public class AgentCompanyActivity extends AppCompatActivity {
         no_data_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                no_data_rl.setEnabled(false);
                 refreshFlag = 0;
                 start = 0;
                 BallProgressUtils.showLoading(AgentCompanyActivity.this, mAll_RL);

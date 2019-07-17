@@ -85,6 +85,8 @@ public class FloorMessageActivity extends AppCompatActivity {
                             } else if ("-1".equals(floorAddressNumUnitRoot.getCode())) {
                                 Toast.makeText(FloorMessageActivity.this, "登录过期，请重新登录", Toast.LENGTH_SHORT).show();
 
+                            }else {
+                                Toast.makeText(FloorMessageActivity.this, "错误信息:"+floorAddressNumUnitRoot.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
 

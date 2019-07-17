@@ -37,12 +37,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GoodsUseActivityMessageActivity extends AppCompatActivity {
-    private ImageView mBack,show_img;
+    private ImageView mBack, show_img;
     long referId;
+    private int withdraw = -1;//判断是否显示撤回按钮
+    private String person_name = "", department_name = "";
     private RelativeLayout mAll_RL, no_data_rl;
     private TextView no_mess_tv;
     private ListView mListview;
-    private List<GoodsUseInformationItems> mList=new ArrayList<>();
+    private List<GoodsUseInformationItems> mList = new ArrayList<>();
     private View footer;
     private EditText reason;
     private GoodUseMessageAda goodUseMessageAda;
@@ -54,11 +56,12 @@ public class GoodsUseActivityMessageActivity extends AppCompatActivity {
     private OkHttpManager okHttpManager;
     private Gson gson = new Gson();
     private String url, agree_url, withdraw_url;//同意或驳回，撤回
-    private Handler handler=new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             BallProgressUtils.dismisLoading();
+            no_data_rl.setEnabled(true);
             if (msg.what == 1) {
                 try {
                     String s = (String) msg.obj;
@@ -70,7 +73,56 @@ public class GoodsUseActivityMessageActivity extends AppCompatActivity {
                                 agree_disagree_ll.setVisibility(View.VISIBLE);
                                 if (goodsUseInformationRoot.getApplyRecipients() != null) {
                                     GoodsUseInformationBean goodsUseInformationBean = goodsUseInformationRoot.getApplyRecipients();
-                                    reason.setText(goodsUseInformationBean.getDetail()+"");
+                                    reason.setText(goodsUseInformationBean.getDetail() + "");
+                                    person_name = goodsUseInformationBean.getTrueName();
+                                    department_name = goodsUseInformationBean.getDepartmentName();
+
+
+                                    //status=1  驳回   ；2 已同意  ；0 待审批 3失效；withdraw=10变示不显示撤回按钮，20表示显示撤回按钮
+                                    int status = goodsUseInformationRoot.getApplyRecipients().getStatus();
+                                    if (status == 0) {
+                                        if (withdraw == 10) {//不显示撤回按钮
+                                            agree_disagree_ll.setVisibility(View.VISIBLE);
+                                            agree_btn.setVisibility(View.VISIBLE);
+                                            disagree_btn.setVisibility(View.VISIBLE);
+                                            withdraw_btn.setVisibility(View.GONE);
+                                        } else if (withdraw == 20) {//显示撤回按钮
+                                            agree_disagree_ll.setVisibility(View.VISIBLE);
+                                            agree_btn.setVisibility(View.GONE);
+                                            disagree_btn.setVisibility(View.GONE);
+                                            withdraw_btn.setVisibility(View.VISIBLE);
+                                        } else {//撤回
+                                            agree_disagree_ll.setVisibility(View.GONE);
+                                            agree_btn.setVisibility(View.GONE);
+                                            disagree_btn.setVisibility(View.GONE);
+                                            withdraw_btn.setVisibility(View.GONE);
+                                        }
+
+
+                                    } else if (status == 1) {
+
+                                        show_img.setVisibility(View.VISIBLE);
+                                        show_img.setImageResource(R.mipmap.b_img);
+
+                                        agree_disagree_ll.setVisibility(View.GONE);
+                                        agree_btn.setVisibility(View.GONE);
+                                        disagree_btn.setVisibility(View.GONE);
+                                        withdraw_btn.setVisibility(View.GONE);
+                                    } else if (status == 2) {
+                                        show_img.setVisibility(View.VISIBLE);
+                                        show_img.setImageResource(R.mipmap.t_img);
+                                        agree_disagree_ll.setVisibility(View.GONE);
+                                        agree_btn.setVisibility(View.GONE);
+                                        disagree_btn.setVisibility(View.GONE);
+                                        withdraw_btn.setVisibility(View.GONE);
+
+                                    } else {//错误
+                                        agree_disagree_ll.setVisibility(View.GONE);
+                                        agree_btn.setVisibility(View.GONE);
+                                        disagree_btn.setVisibility(View.GONE);
+                                        withdraw_btn.setVisibility(View.GONE);
+                                    }
+
 
                                     if (goodsUseInformationBean.getItems() != null) {
                                         mList = goodsUseInformationBean.getItems();
@@ -92,6 +144,12 @@ public class GoodsUseActivityMessageActivity extends AppCompatActivity {
                                 no_data_rl.setVisibility(View.VISIBLE);
                                 show_img.setVisibility(View.GONE);
                                 no_mess_tv.setText("登录过期，请重新登录");
+                                agree_disagree_ll.setVisibility(View.GONE);
+                            } else {
+                                Toast.makeText(GoodsUseActivityMessageActivity.this, "错误信息：" + goodsUseInformationRoot.getMessage(), Toast.LENGTH_SHORT).show();
+                                no_data_rl.setVisibility(View.VISIBLE);
+                                show_img.setVisibility(View.GONE);
+                                no_mess_tv.setText("错误信息：" + goodsUseInformationRoot.getMessage());
                                 agree_disagree_ll.setVisibility(View.GONE);
                             }
                         } else {
@@ -126,6 +184,9 @@ public class GoodsUseActivityMessageActivity extends AppCompatActivity {
                             } else if ("-1".equals(successBean.getCode())) {
                                 Toast.makeText(GoodsUseActivityMessageActivity.this, successBean.getMessage() + "", Toast.LENGTH_SHORT).show();
 
+                            } else {
+                                Toast.makeText(GoodsUseActivityMessageActivity.this, successBean.getMessage() + "", Toast.LENGTH_SHORT).show();
+
                             }
                         }
                     }
@@ -147,6 +208,9 @@ public class GoodsUseActivityMessageActivity extends AppCompatActivity {
                             } else if ("-1".equals(successBean.getCode())) {
                                 Toast.makeText(GoodsUseActivityMessageActivity.this, successBean.getMessage() + "", Toast.LENGTH_SHORT).show();
 
+                            } else {
+                                Toast.makeText(GoodsUseActivityMessageActivity.this, successBean.getMessage() + "", Toast.LENGTH_SHORT).show();
+
                             }
                         }
                     }
@@ -164,11 +228,12 @@ public class GoodsUseActivityMessageActivity extends AppCompatActivity {
             }
         }
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_use_message);
-        show_img=(ImageView) findViewById(R.id.show_sign);
+        show_img = (ImageView) findViewById(R.id.show_sign);
         mBack = (ImageView) findViewById(R.id.back_img);
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,6 +255,7 @@ public class GoodsUseActivityMessageActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (referId != -1) {//请求详情
+                    no_data_rl.setEnabled(false);
                     BallProgressUtils.showLoading(GoodsUseActivityMessageActivity.this, mAll_RL);
                     okHttpManager.getMethod(false, url + "id=" + referId, "请求领用详情", handler, 1);
                 } else {//传过来的详情ID错误
@@ -199,11 +265,10 @@ public class GoodsUseActivityMessageActivity extends AppCompatActivity {
         });
 
 
-
         mListview = (ListView) findViewById(R.id.goods_mess_listview_id);
-        goodUseMessageAda=new GoodUseMessageAda();
-        footer=LayoutInflater.from(this).inflate(R.layout.goods_use_message_footer,null);
-        reason=footer.findViewById(R.id.edit_goods_use_mess_reason);
+        goodUseMessageAda = new GoodUseMessageAda();
+        footer = LayoutInflater.from(this).inflate(R.layout.goods_use_message_footer, null);
+        reason = footer.findViewById(R.id.edit_goods_use_mess_reason);
         mListview.setAdapter(goodUseMessageAda);
         mListview.addFooterView(footer);
         //同意，驳回，撤销
@@ -307,44 +372,11 @@ public class GoodsUseActivityMessageActivity extends AppCompatActivity {
 
         intent = getIntent();
         referId = intent.getLongExtra("id", -1);
+        withdraw = intent.getIntExtra("withdraw_flag", -1);
         if (referId != -1) {//请求详情
             okHttpManager.getMethod(false, url + "id=" + referId, "请求领用详情", handler, 1);
         } else {//传过来的详情ID错误
             Toast.makeText(this, "请求详情ID错误", Toast.LENGTH_SHORT).show();
-        }
-        //0表示待审批（显示同意，驳回），1表示已审批，什么都不显示，2表示申请中的审批中跳转过来的，（显示撤回按钮）
-        int flag = intent.getIntExtra("flag", -1);
-        int show_flag=intent.getIntExtra("show_flag",-1);
-        if (flag == 0) {
-            agree_disagree_ll.setVisibility(View.VISIBLE);
-            agree_btn.setVisibility(View.VISIBLE);
-            disagree_btn.setVisibility(View.VISIBLE);
-            withdraw_btn.setVisibility(View.GONE);
-        } else if (flag == 1) {
-            if (show_flag==100){//已完成图片
-                show_img.setVisibility(View.VISIBLE);
-                show_img.setImageResource(R.mipmap.t_img);
-            }else if (show_flag==200){//被驳回图片
-                show_img.setVisibility(View.VISIBLE);
-                show_img.setImageResource(R.mipmap.b_img);
-            }else {
-                show_img.setVisibility(View.GONE);
-            }
-            agree_disagree_ll.setVisibility(View.GONE);
-            agree_btn.setVisibility(View.GONE);
-            disagree_btn.setVisibility(View.GONE);
-            withdraw_btn.setVisibility(View.GONE);
-        } else if (flag == 2) {
-            //撤销时需要弹框
-            agree_disagree_ll.setVisibility(View.VISIBLE);
-            agree_btn.setVisibility(View.GONE);
-            disagree_btn.setVisibility(View.GONE);
-            withdraw_btn.setVisibility(View.VISIBLE);
-        } else {//错误
-            agree_disagree_ll.setVisibility(View.GONE);
-            agree_btn.setVisibility(View.GONE);
-            disagree_btn.setVisibility(View.GONE);
-            withdraw_btn.setVisibility(View.GONE);
         }
     }
 
@@ -375,7 +407,7 @@ public class GoodsUseActivityMessageActivity extends AppCompatActivity {
                 goodsUseMessageHolder.mingxi = view.findViewById(R.id.mingxi_num_tv);
                 goodsUseMessageHolder.name = view.findViewById(R.id.edit_goods_name);
                 goodsUseMessageHolder.num = view.findViewById(R.id.edit_goods_num);
-                //goodsUseMessageHolder.mess = view.findViewById(R.id.edit_goods_use_reason);
+                goodsUseMessageHolder.person_and_department = view.findViewById(R.id.person_and_department);
                 view.setTag(goodsUseMessageHolder);
             } else {
                 goodsUseMessageHolder = (GoodsUseMessageHolder) view.getTag();
@@ -383,13 +415,14 @@ public class GoodsUseActivityMessageActivity extends AppCompatActivity {
 
             int a = i + 1;
             goodsUseMessageHolder.mingxi.setText("物品领用明细" + "(" + a + ")");
-            goodsUseMessageHolder.name.setText(mList.get(i).getNam()+"");
-            goodsUseMessageHolder.num.setText(mList.get(i).getNum()+"");
+            goodsUseMessageHolder.name.setText(mList.get(i).getNam() + "");
+            goodsUseMessageHolder.num.setText(mList.get(i).getNum() + "");
+            goodsUseMessageHolder.person_and_department.setText(department_name + "  " + person_name);
             return view;
         }
 
         class GoodsUseMessageHolder {
-            TextView mingxi;
+            TextView mingxi, person_and_department;
             EditText name, num, mess;
         }
     }

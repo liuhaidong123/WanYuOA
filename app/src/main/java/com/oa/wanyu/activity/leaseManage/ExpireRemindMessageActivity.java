@@ -60,7 +60,7 @@ public class ExpireRemindMessageActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            //sure_btn.setEnabled(true);
+            no_data_rl.setEnabled(true);
             BallProgressUtils.dismisLoading();
             if (msg.what == 1) {
                 try {
@@ -288,6 +288,7 @@ public class ExpireRemindMessageActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (id != -1) {
+                    no_data_rl.setEnabled(false);
                     BallProgressUtils.showLoading(ExpireRemindMessageActivity.this, mAll);
                     okHttpManager.getMethod(false, url, "商铺详情", handler, 1);
                 } else {

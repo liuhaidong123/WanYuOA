@@ -20,6 +20,7 @@ public class User {
 
     private long id;
 
+    private long companyId ;
     private String userName;
 
     private String trueName;
@@ -315,5 +316,13 @@ public class User {
 
     public void setVolume(int volume) {
         this.volume = volume;
+    }
+
+    public long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(long companyId) {
+        this.companyId = companyId;
     }
 }

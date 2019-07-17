@@ -33,7 +33,9 @@ import com.oa.wanyu.OkHttpUtils.OkHttpManager;
 import com.oa.wanyu.OkHttpUtils.URLTools;
 import com.oa.wanyu.R;
 import com.oa.wanyu.bean.ContactsBean;
+import com.oa.wanyu.bean.ContactsBean2;
 import com.oa.wanyu.bean.ContactsRoot;
+import com.oa.wanyu.bean.ContactsRoot2;
 import com.oa.wanyu.bean.approvastatus.ApprovalRoot;
 import com.oa.wanyu.myutils.BallProgressUtils;
 import com.oa.wanyu.myutils.CheckPhone;
@@ -62,7 +64,7 @@ public class ContactsFragment extends Fragment {
     private EditText editText;
     private MyLetterListView myLetterListView;
     private HashMap<String, Integer> mAlphaIndexer = new HashMap<String, Integer>();//当前汉语拼音首字母和与之对应的列表位
-    private List<ContactsBean> mList = new ArrayList<>();
+    private List<ContactsBean2> mList = new ArrayList<>();
     private ListView mListView;
     private int mPosition;
     private SmartRefreshLayout smartRefreshLayout;
@@ -88,13 +90,14 @@ public class ContactsFragment extends Fragment {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            no_data_rl.setEnabled(true);
             BallProgressUtils.dismisLoading();
             if (msg.what == 1) {
                 try {
                     String mes = (String) msg.obj;
-                    Object o = gson.fromJson(mes, ContactsRoot.class);
-                    if (o != null && o instanceof ContactsRoot) {
-                        ContactsRoot contactsRoot = (ContactsRoot) o;
+                    Object o = gson.fromJson(mes, ContactsRoot2.class);
+                    if (o != null && o instanceof ContactsRoot2) {
+                        ContactsRoot2 contactsRoot = (ContactsRoot2) o;
                         if (contactsRoot != null) {
                             if ("0".equals(contactsRoot.getCode())) {
                                 if (contactsRoot.getRows() != null) {
@@ -155,13 +158,14 @@ public class ContactsFragment extends Fragment {
     private void initUi(View view1) {
 
         okHttpManager = OkHttpManager.getInstance();
-        url = URLTools.urlBase + URLTools.select_contacts;
+        url = URLTools.urlBase + URLTools.select_contacts2;
         okHttpManager.getMethod(false, url + "name=" + "", "查询联系人列表", handler, 1);
 
         no_data_rl = view1.findViewById(R.id.no_data_rl);
         no_data_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                no_data_rl.setEnabled(false);
                 editText.setText("");
                 BallProgressUtils.showLoading(getActivity(), no_data_rl);
                 okHttpManager.getMethod(false, url + "name=" + "", "查询联系人列表", handler, 1);
@@ -309,7 +313,13 @@ public class ContactsFragment extends Fragment {
             }
 
             Picasso.with(getActivity()).load(URLTools.urlBase + mList.get(i).getAvatar()).error(R.mipmap.head_img_icon).into(myHolder.img);
-            myHolder.name.setText(mList.get(i).getUserName() + "");
+
+            if ("".equals(mList.get(i).getTrueName())){
+                myHolder.name.setText("姓名：未知");
+            }else {
+                myHolder.name.setText(mList.get(i).getTrueName() + "");
+            }
+
 
             if (!"".equals(mList.get(i).getDepartmentName())) {
                 myHolder.department.setText("部门：" + mList.get(i).getDepartmentName() + "");

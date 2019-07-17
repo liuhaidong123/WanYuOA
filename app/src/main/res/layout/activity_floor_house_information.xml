@@ -29,7 +29,7 @@
             android:maxLines="1"
                 android:ellipsize="end"
             android:gravity="center"
-            android:text="f房屋信息几号楼几单元几零几"
+            android:text=""
             android:textColor="@color/color_232323"
             android:textSize="16sp" />
 

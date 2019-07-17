@@ -55,7 +55,10 @@ public class LoginActivity extends AppCompatActivity {
                             sharedPrefrenceTools.put("truename", loginRoot.getUser().getTrueName() + "");//姓名
                             sharedPrefrenceTools.put("avatar", loginRoot.getUser().getAvatar() + "");//头像
                             sharedPrefrenceTools.put("age", loginRoot.getUser().getAge() + "");//年龄
-                            sharedPrefrenceTools.put("gender ", loginRoot.getUser().getGender() + "");//性别
+                            sharedPrefrenceTools.put("gender", loginRoot.getUser().getGender() + "");//性别
+                            sharedPrefrenceTools.put("companyID", loginRoot.getUser().getCompanyId() + "");//销售的公司id
+                            sharedPrefrenceTools.put("idAdmin", loginRoot.getUser().getIsAdmin()+"");//权限id
+                           // Log.e("isadmin",loginRoot.getUser().getIsAdmin()+"");
                             for (int i = 0; i < loginRoot.getUser().getPermission().size(); i++) {//存放权限实体类
                                 sharedPrefrenceTools.saveObject("Permission" + i, loginRoot.getUser().getPermission().get(i));
                             }
@@ -115,9 +118,18 @@ public class LoginActivity extends AppCompatActivity {
         forget_password_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(LoginActivity.this, "请联系管理人", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "请联系后台管理员", Toast.LENGTH_SHORT).show();
             }
         });
+
+        mRegister_select = (TextView) findViewById(R.id.register_btn);
+        mRegister_select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(LoginActivity.this, "注册功能暂未开通", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         edit_phone = (EditText) findViewById(R.id.edit_phone);
         edit_password = (EditText) findViewById(R.id.edit_password);

@@ -67,6 +67,7 @@ public class LeaseManagectivity extends AppCompatActivity {
             super.handleMessage(msg);
             already_lease_tv.setEnabled(true);
             no_lease_tv.setEnabled(true);
+            no_data_rl.setEnabled(true);
             BallProgressUtils.dismisLoading();
             if (msg.what == 1) {
                 try {
@@ -197,6 +198,7 @@ public class LeaseManagectivity extends AppCompatActivity {
         no_data_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                no_data_rl.setEnabled(false);
                 refresh = 0;
                 start = 0;
                 url = URLTools.urlBase + URLTools.residential_list + "state=" + flag + "&start=" + start + "&limit=" + limit;

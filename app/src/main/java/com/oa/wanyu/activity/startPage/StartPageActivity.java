@@ -68,6 +68,19 @@ public class StartPageActivity extends AppCompatActivity {
                                 };
                                 timer.schedule(timerTask, 2000);
 
+                            }else {
+                                final Timer timer = new Timer(true);
+                                TimerTask timerTask = new TimerTask() {
+                                    @Override
+                                    public void run() {
+
+                                        Intent intent = new Intent(StartPageActivity.this, LoginActivity.class);
+                                        startActivity(intent);
+                                        finish();
+
+                                    }
+                                };
+                                timer.schedule(timerTask, 2000);
                             }
                         }
 

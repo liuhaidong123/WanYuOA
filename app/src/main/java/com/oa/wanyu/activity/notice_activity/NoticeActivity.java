@@ -52,7 +52,10 @@ public class NoticeActivity extends AppCompatActivity {
                             } else if ("-1".equals(successBean.getCode())) {
 
                                 Toast.makeText(NoticeActivity.this, "登录过期，请重新登录", Toast.LENGTH_SHORT).show();
+                            }else {
+                                Toast.makeText(NoticeActivity.this, "失败信息："+successBean.getMessage(), Toast.LENGTH_SHORT).show();
                             }
+
                         }
                     }
 

@@ -1,18 +1,32 @@
 package com.oa.wanyu.activity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.oa.wanyu.OkHttpUtils.OkHttpManager;
+import com.oa.wanyu.OkHttpUtils.URLTools;
 import com.oa.wanyu.R;
+import com.oa.wanyu.bean.VersonCodeRoot;
+import com.oa.wanyu.bean.VersonCodeRows;
 import com.oa.wanyu.fragment.ContactsFragment;
 import com.oa.wanyu.fragment.JobFragment;
 import com.oa.wanyu.fragment.MessageFragment;
@@ -33,6 +47,59 @@ public class MainActivity extends AppCompatActivity {
     private List<Fragment> mListFragment=new ArrayList<>();
     private TabLayout mTablayout;
     private  long time = 0;
+
+    private AlertDialog.Builder builder;
+    private AlertDialog alertDialog;
+    private int mVersonCode;
+    private Gson gson=new Gson();
+    private OkHttpManager okHttpManager;
+    private String url;
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == 1) {
+                try{
+                    String s = (String) msg.obj;
+                    Object o = gson.fromJson(s, VersonCodeRoot.class);
+                    if (o != null && o instanceof VersonCodeRoot) {
+                        VersonCodeRoot versonCodeRoot = (VersonCodeRoot) o;
+                        if (versonCodeRoot != null && "0".equals(versonCodeRoot.getCode())) {
+                            //判断服务器版本号与本地版本号
+                            VersonCodeRows versonCodeRows = versonCodeRoot.getDict();
+                            if (versonCodeRows != null) {
+
+                                String versonçode = versonCodeRows.getValue();
+                                Integer code = Integer.valueOf(versonçode);
+                                if (code>mVersonCode){
+                                    //弹框更新(等待上线后再测试)
+                                    alertDialog.show();
+                                }
+                            }
+
+
+                        } else {
+                            Toast.makeText(MainActivity.this, "获取版本号失败", Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    } else {
+                        Toast.makeText(MainActivity.this, "获取版本号错误", Toast.LENGTH_SHORT).show();
+                    }
+
+                }catch (Exception e){
+
+                }
+
+
+            } else {
+                Toast.makeText(MainActivity.this, "连接服务器失败,请重新尝试", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+    };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +108,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initUI(){
+
+
+        //获取本地版本号
+        mVersonCode=getVersionCode();
+        //检测版本号
+        okHttpManager = OkHttpManager.getInstance();
+        url = URLTools.urlBase + URLTools.check_verson_code;
+        okHttpManager.getMethod(false, url, "检测版本号", handler, 1);
+        builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setMessage("检测到最新版本,请更新");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("http://59.110.169.148:8183/static/app-release.apk"));
+                startActivity(intent);
+                alertDialog.dismiss();
+
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog = builder.create();
+
+
+
         mViewpager = (ViewPager) findViewById(R.id.main_viewpager);
         mFragmentManager = getSupportFragmentManager();
 
@@ -115,6 +213,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    private int getVersionCode() {
+        // 获取packagemanager的实例
+        PackageManager packageManager = getPackageManager();
+        // getPackageName()是你当前类的包名，0代表是获取版本信息
+        PackageInfo packInfo = null;
+        try {
+            packInfo = packageManager.getPackageInfo(getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        int versionCode = packInfo.versionCode;
+        Log.e("本地软件版本号=", versionCode + "");
+        return versionCode;
+    }
+
 
     @Override
     public void onBackPressed() {

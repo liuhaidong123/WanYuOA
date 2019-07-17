@@ -28,6 +28,12 @@
     <color name="color_8bc34a">#8bc34a</color>
     <color name="color_ff594d">#ff594d</color>
     <color name="color_a0a0a0">#a0a0a0</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_line">#466afa</color>
+
+    <color name="color_eb5270">#eb5270</color>
+    <color name="color_5887f6">#5887f6</color>
+    <color name="color_59cc90">#59cc90</color>
 
 
 </resources>

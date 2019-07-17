@@ -1,7 +1,9 @@
 package com.oa.wanyu.activity.shopsManage;
 
+import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +16,7 @@ import com.google.gson.Gson;
 import com.oa.wanyu.OkHttpUtils.OkHttpManager;
 import com.oa.wanyu.OkHttpUtils.URLTools;
 import com.oa.wanyu.R;
+import com.oa.wanyu.activity.AgentCompany.AgentCompanyInformationActivity;
 import com.oa.wanyu.activity.leave.LeaveActivity;
 import com.oa.wanyu.bean.ShopsManageSecondRoot;
 import com.oa.wanyu.bean.ShopsMessageBean;
@@ -33,6 +36,8 @@ public class ShopsManageMessageActivity extends AppCompatActivity {
     private TextView shops_name, address, type, floor, area, status, sign_btn;
     private RelativeLayout mAll, no_data_rl;
     private TextView no_mess_tv;
+    private AlertDialog.Builder builder;
+    private AlertDialog alertDialog;
     private OkHttpManager okHttpManager;
     private Gson gson = new Gson();
     private String url, sign_url;
@@ -100,6 +105,10 @@ public class ShopsManageMessageActivity extends AppCompatActivity {
                                 Toast.makeText(ShopsManageMessageActivity.this, "登录过期，请重新登录", Toast.LENGTH_SHORT).show();
                                 no_data_rl.setVisibility(View.VISIBLE);
                                 no_mess_tv.setText("登录过期，请重新登录");
+                            }else {
+                                Toast.makeText(ShopsManageMessageActivity.this, "错误信息："+shopsMessageRoot.getMessage(), Toast.LENGTH_SHORT).show();
+                                no_data_rl.setVisibility(View.VISIBLE);
+                                no_mess_tv.setText("错误信息："+shopsMessageRoot.getMessage());
                             }
                         }
 
@@ -126,6 +135,10 @@ public class ShopsManageMessageActivity extends AppCompatActivity {
                                 no_data_rl.setVisibility(View.VISIBLE);
                                 no_mess_tv.setText("登录过期，请重新登录");
                                 Toast.makeText(ShopsManageMessageActivity.this, "登录过期，请重新登录", Toast.LENGTH_SHORT).show();
+                            }else {
+                                no_data_rl.setVisibility(View.VISIBLE);
+                                no_mess_tv.setText("标记失败："+successBean.getMessage());
+                                Toast.makeText(ShopsManageMessageActivity.this,"标记失败："+successBean.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -201,19 +214,36 @@ public class ShopsManageMessageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (id != -1) {
-                    BallProgressUtils.showLoading(ShopsManageMessageActivity.this,mAll);
-                    sign_btn.setEnabled(false);
-                    Map<Object, Object> map = new HashMap<Object, Object>();
-                    map.put("id", id);
-                    map.put("state", 50);
-                    map.put("stateText", "已售");
-                    okHttpManager.postMethod(false, sign_url, "标记为已售", map, handler, 2);
+                    alertDialog.show();
                 } else {
                     Toast.makeText(ShopsManageMessageActivity.this, "获取商铺id错误", Toast.LENGTH_SHORT).show();
                 }
 
-
             }
         });
+
+        //标记为已售是弹框
+        builder = new AlertDialog.Builder(this);
+        builder.setTitle("确定标记此商铺为已售?请谨慎操作。");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                alertDialog.dismiss();
+                BallProgressUtils.showLoading(ShopsManageMessageActivity.this,mAll);
+                sign_btn.setEnabled(false);
+                Map<Object, Object> map = new HashMap<Object, Object>();
+                map.put("id", id);
+                map.put("state", 50);
+                map.put("stateText", "已售");
+                okHttpManager.postMethod(false, sign_url, "标记为已售", map, handler, 2);
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog = builder.create();
     }
 }

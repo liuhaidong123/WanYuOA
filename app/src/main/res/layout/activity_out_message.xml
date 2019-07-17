@@ -49,19 +49,19 @@
             android:background="@color/color_ffffff"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:visibility="gone">
+           >
 
             <TextView
                 android:id="@+id/e_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="请假类型"
+                android:text="申请人"
                 android:textColor="@color/color_000000"
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/leave_type_tv"
+                android:id="@+id/person_and_department"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
@@ -70,17 +70,10 @@
                 android:layout_toRightOf="@+id/e_time"
                 android:gravity="end|center_vertical"
                 android:paddingLeft="10dp"
-                android:text="事假"
+                android:text="销售部  刘"
                 android:textColor="@color/color_000000"
                 android:textSize="12sp" />
 
-            <ImageView
-                android:id="@+id/select3_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/sanjiao" />
         </RelativeLayout>
 
         <RelativeLayout

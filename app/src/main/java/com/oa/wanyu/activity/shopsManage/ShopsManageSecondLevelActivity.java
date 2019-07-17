@@ -57,6 +57,7 @@ public class ShopsManageSecondLevelActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             BallProgressUtils.dismisLoading();
+            no_data_rl.setEnabled(true);
             if (msg.what == 1) {
                 try {
                     String mes = (String) msg.obj;
@@ -148,6 +149,7 @@ public class ShopsManageSecondLevelActivity extends AppCompatActivity {
                 start = 0;
 
                 if (mID != -1) {
+                    no_data_rl.setEnabled(false);
                     BallProgressUtils.showLoading(ShopsManageSecondLevelActivity.this, mAll_RL);
                     url = URLTools.urlBase + URLTools.residential_list + "buildingId=" + mID + "&start=" + start + "&limit=" + limit;
                     okHttpManager.getMethod(false, url, "店铺列表", handler, 1);

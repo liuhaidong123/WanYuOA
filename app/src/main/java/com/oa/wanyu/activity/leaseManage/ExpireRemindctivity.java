@@ -59,6 +59,7 @@ public class ExpireRemindctivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             BallProgressUtils.dismisLoading();
+            no_data_rl.setEnabled(true);
             if (msg.what == 1) {
                 try {
                     String mes = (String) msg.obj;
@@ -137,6 +138,7 @@ public class ExpireRemindctivity extends AppCompatActivity {
         no_data_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                no_data_rl.setEnabled(false);
                 refresh = 0;
                 start = 0;
                 url = URLTools.urlBase + URLTools.expire_remind + "start=" + start + "&limit=" + limit;

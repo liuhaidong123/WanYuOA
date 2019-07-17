@@ -55,6 +55,7 @@ public class ShopsManagectivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             BallProgressUtils.dismisLoading();
+            no_data_rl.setEnabled(true);
             if (msg.what == 1) {
                 try {
                     String mes = (String) msg.obj;
@@ -93,6 +94,10 @@ public class ShopsManagectivity extends AppCompatActivity {
                                 Toast.makeText(ShopsManagectivity.this, "登录过期，请重新登录", Toast.LENGTH_SHORT).show();
                                 no_data_rl.setVisibility(View.VISIBLE);
                                 no_mess_tv.setText("登录过期，请重新登录");
+                            }else {
+                                Toast.makeText(ShopsManagectivity.this, "错误信息："+shopsManageRoot.getMessage(), Toast.LENGTH_SHORT).show();
+                                no_data_rl.setVisibility(View.VISIBLE);
+                                no_mess_tv.setText("错误信息："+shopsManageRoot.getMessage());
                             }
                         }
 
@@ -136,6 +141,7 @@ public class ShopsManagectivity extends AppCompatActivity {
         no_data_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                no_data_rl.setEnabled(false);
                 refresh = 0;
                 start = 0;
                 BallProgressUtils.showLoading(ShopsManagectivity.this, mAll_RL);

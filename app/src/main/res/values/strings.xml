@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WanYuOA</string>
+    <string name="app_name">万宇OA</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -45,4 +45,7 @@
     <string name="live">居住区域</string>
     <string name="way">认知渠道</string>
     <string name="like">意向房源</string>
+    <string name="phone">电&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;话</string>
+    <string name="password">密&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;码</string>
+    <string name="live_tv">住&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;址</string>
 </resources>
